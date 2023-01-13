@@ -22,7 +22,7 @@ print(screen_width, screen_height)
 scrlevone.geometry("%dx%d+0+0" % (screen_width, screen_height))
 scrlevone.overrideredirect(1)
 
-# For camera displaying
+#For camera display onto the GUI.
 vidCap = Label(scrlevone)
 vidCap.place(relx=1, rely=1, x=0, y=0, anchor="se")
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
