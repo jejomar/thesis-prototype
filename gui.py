@@ -113,7 +113,7 @@ def show_frames():
     # Line thickness of 2 px
     thickness = 5
 
-    frame = cv2.putText(
+    cv2.putText(
         frame,
         str(y_pred[0]),
         org,
