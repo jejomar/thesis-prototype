@@ -84,9 +84,7 @@ def camdisplay():
     data = image_processed(frame)
     data = np.array(data)
     y_pred = svm.predict(data.reshape(-1, 63))
-
-    if hands:
-        print(y_pred)
+    print(y_pred)
 
     cv2.putText(frame, str(y_pred[0]), (20, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2, cv2.LINE_AA)
     frameRGBA = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
