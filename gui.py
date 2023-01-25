@@ -4,21 +4,27 @@ from tkinter import *
 import cv2
 import mediapipe as mp
 import numpy as np
+import pickle
 from PIL import Image, ImageTk
 
-def getRan(count):
-    setLet = random.sample(string.ascii_uppercase, count)
+cd = int(5)
+
+def getRan():
+    setLet = random.sample(string.ascii_uppercase, 5)
     return setLet
 
 # Displays the random letters
 def display_letter():
-    letter = Frame(scrlevone, width=1920, height=300, bg='blue').place(x=0, y=30)
-
+    letter = Frame(scrlevone, width=1536, height=216, bg="blue").place(x=0, y=0)
+    Label(letter, text="Visual Acuity Assessment Device", font=("Century Gothic", 50, "bold"), fg="black").grid(row=0, column=0)
     for i in range(len(rone)):
-        letDisp = Label(
-            letter, text=rone[i], font=("Courier", 150, "bold"), fg="black"
-        )
-        letDisp.grid(row=2, column=i)
+        letDisp = Label(letter, text=rone[i], font=("Courier", 150, "bold"), fg="black")
+        letDisp.pack(side=LEFT, expand=TRUE)
+        #letDisp.grid(row=1, column=i, ipadx=125)
+
+def timer():
+    if hands:
+
 
 def image_processed(hand_img):
     img_rgb = cv2.cvtColor(hand_img, cv2.COLOR_BGR2RGB) # 1. Convert BGR to RGB
@@ -47,12 +53,10 @@ def image_processed(hand_img):
     except:
         return np.zeros([1, 63], dtype=int)[0]
 
-import pickle
-
 with open("model.pkl", "rb") as f:
     svm = pickle.load(f)
 
-rone = getRan(3)
+rone = getRan()
 
 scrlevone = Tk()
 scrlevone.title("Level 1")
@@ -61,6 +65,10 @@ screen_height = scrlevone.winfo_screenheight()
 print(screen_width, screen_height)
 scrlevone.geometry("%dx%d+0+0" % (screen_width, screen_height))
 scrlevone.overrideredirect(1)
+
+scrlevone.pack_propagate(0)
+scrlevone.rowconfigure([0,1,2,3], minsize=307.2)
+scrlevone.columnconfigure([0,1,2,3,4], minsize=216)
 
 # For camera display onto the GUI.
 vidCap = Label(scrlevone)
@@ -76,7 +84,9 @@ def camdisplay():
     data = image_processed(frame)
     data = np.array(data)
     y_pred = svm.predict(data.reshape(-1, 63))
-    print(y_pred)
+
+    if hands:
+        print(y_pred)
 
     cv2.putText(frame, str(y_pred[0]), (20, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 2, cv2.LINE_AA)
     frameRGBA = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
