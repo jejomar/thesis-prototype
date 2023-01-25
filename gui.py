@@ -10,15 +10,6 @@ def getRan(count):
     setLet = random.sample(string.ascii_uppercase, count)
     return setLet
 
-# Shows the detected letter from sign language
-def show_letter():
-    detected_letter_frame = Frame(scrlevone, width=900, height=200,bg='red').place(x=0, y=600)
-    detected_label = Label(
-        detected_letter_frame, text=str(y_pred[0]), font=("Courier", 50, "bold"), fg="black",bg='white'
-    )
-    detected_label.grid(row=3,column=0)
-    detected_label.after(20, show_letter)
-
 # Displays the random letters
 def display_letter():
     letter = Frame(scrlevone, width=1920, height=300, bg='blue').place(x=0, y=30)
@@ -96,6 +87,5 @@ def camdisplay():
     vidCap.after(10, camdisplay)
 
 camdisplay()
-show_letter()
 display_letter()
 scrlevone.mainloop()
