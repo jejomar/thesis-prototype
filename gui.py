@@ -45,7 +45,7 @@ def image_processed(hand_img):
     img_rgb = cv2.cvtColor(
         hand_img, cv2.COLOR_BGR2RGB
     )  # 1. Convert BGR to RGB
-    img_flip = cv2.flip(img_rgb, 1)  # 2. Flip the img in Y-axis
+    # img_flip = cv2.flip(img_rgb, 1)  # 2. Flip the img in Y-axis
 
     mp_hands = mp.solutions.hands  # Accessing MediaPipe solutions
 
@@ -57,7 +57,7 @@ def image_processed(hand_img):
         min_tracking_confidence=0.8,
     )  # Initialize Hands
 
-    output = hands.process(img_flip)  # Results
+    output = hands.process(img_rgb)  # Results
     hands.close()
 
     try:
@@ -119,7 +119,9 @@ def camdisplay():
     data = image_processed(frame)
 
     # Will only get the detected letter only if hands are present in the frame.
-    if output.multi_hand_landmarks:
+    if (
+        output.multi_hand_landmarks
+    ):  # Line checks if hands are present in the frame
         data = np.array(data)
         y_pred = svm.predict(data.reshape(-1, 63))
         print(y_pred)
@@ -134,6 +136,19 @@ def camdisplay():
             2,
             cv2.LINE_AA,
         )
+
+        # Draw the hand annotations on the image
+        img_bgr = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+
+        if output.multi_hand_landmarks:
+            for hand_landmarks in output.multi_hand_landmarks:
+                mp_drawing.draw_landmarks(
+                    frame,
+                    hand_landmarks,
+                    mp_hands.HAND_CONNECTIONS,
+                    mp_drawing_styles.get_default_hand_landmarks_style(),
+                    mp_drawing_styles.get_default_hand_connections_style(),
+                )
 
     frameRGBA = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
     img = Image.fromarray(frameRGBA)
