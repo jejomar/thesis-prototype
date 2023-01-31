@@ -7,19 +7,28 @@ def returnTitle():
     main.deiconify()
 def returnLevSel():
     eyeScreen.withdraw()
-    levselScreen.deiconify()
-def returnEye():
-    instrScreen.withdraw()
-    eyeScreen.deiconify()
+    main.deiconify()
+def returnLEye():
+    leinstrScreen.withdraw()
+    main.deiconify()
+def returnREye():
+    reinstrScreen.withdraw()
+    main.deiconify()
 ######################
 
 ######################
-def levChosen(level):
+def itsChosen(level, eye):
     global chosenlevel
+    global choseneye
 
     chosenlevel = level
 
-
+    if eye == "left":
+        eyeScreen.withdraw()
+        lefteyeinstr()
+    else:
+        eyeScreen.withdraw()
+        righteyeinstr()
 ######################
 
 ######################
@@ -43,7 +52,7 @@ def levelselect():
 
     btnReturn = ttk.Button(levselScreen, text="Return", command=lambda: returnTitle())
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady = 10, anchor=W)
-    lblTitle = Label(levselScreen, text="Level Select Screen", font=("Arial Black", 40))
+    lblTitle = Label(levselScreen, text="LEVEL SELECT", font=("Arial Black", 40))
     lblTitle.pack(fill=X)
 
     frmTop = Frame(levselScreen, width=width, height=(height-45))
@@ -78,10 +87,8 @@ def levelselect():
 ######################
 def eyetest(level):
     global eyeScreen
-    global chosenLvl
     levselScreen.withdraw()
 
-    chosenLvl = level
     left = PhotoImage(file=r"lefteye.png")
     right = PhotoImage(file=r"righteye.png")
 
@@ -100,7 +107,7 @@ def eyetest(level):
 
     btnReturn = ttk.Button(eyeScreen, text="Return", command=lambda: returnLevSel())
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
-    lblTitle = Label(eyeScreen, text="Choose the Eye to Test", font=("Arial Black", 40))
+    lblTitle = Label(eyeScreen, text="CHOOSE THE EYE TO TEST", font=("Arial Black", 40))
     lblTitle.pack(fill=X)
 
     frmLeft = Frame(eyeScreen, width=width, height=(height - 45))
@@ -108,11 +115,11 @@ def eyetest(level):
     frmRight = Frame(eyeScreen, width=width, height=(height - 45))
     frmRight.pack(side=LEFT, pady=(20,20), padx= (10,20), fill=BOTH, expand=TRUE)
 
-    btnLeft = ttk.Button(frmLeft, text="Left Eye", image = right)
+    btnLeft = ttk.Button(frmLeft, text="Left Eye", image = right, command=lambda: itsChosen(level, "left"))
     btnLeft.pack(pady=(30,20), padx=20, ipady=150, ipadx=200)
     lblLeft = Label(frmLeft, text="LEFT EYE", font=("Arial", 20))
     lblLeft.pack()
-    btnRight = ttk.Button(frmRight, text="Right Eye", image = left)
+    btnRight = ttk.Button(frmRight, text="Right Eye", image = left, command=lambda: itsChosen(level, "right"))
     btnRight.pack(pady=(30,20), padx=20, ipady=150, ipadx=200)
     lblRight = Label(frmRight, text="RIGHT EYE", font=("Arial", 20))
     lblRight.pack()
@@ -121,17 +128,83 @@ def eyetest(level):
 ######################
 
 ######################
-def instruction():
-    global instrScreen
-    instrScreen = Toplevel(main)
-    instrScreen.title("Eye Test Screen")
-    screen_width = main.winfo_screenwidth()
-    screen_height = main.winfo_screenheight()
-    print(screen_width, screen_height)
-    instrScreen.geometry("%dx%d+0+0" % (screen_width, screen_height))
-    instrScreen.overrideredirect(0)
+def lefteyeinstr():
+    global leinstrScreen
+    levselScreen.withdraw()
 
-    instrScreen.mainloop()
+    leinstrScreen = Toplevel(main)
+    screen_width = leinstrScreen.winfo_screenwidth()
+    screen_height = leinstrScreen.winfo_screenheight()
+    width = screen_width * 0.7
+    height = screen_height * 0.7
+    x = (screen_width / 2) - (width / 2)
+    y = (screen_height / 2) - (height / 2)
+
+    leinstrScreen.title("Visual Acuity Assessment Device for Mute and/or Mute Individuals")
+    leinstrScreen.geometry("%dx%d+%d+%d" % (width, height, x, y))
+    leinstrScreen.overrideredirect(0)
+    leinstrScreen.pack_propagate(0)
+
+    btnReturn = ttk.Button(leinstrScreen, text="Return", command=lambda: returnLEye())
+    btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
+    lblTitle = Label(leinstrScreen, text="INSTRUCTIONS BEFORE THE ASSESSMENT", font=("Arial Black", 40))
+    lblTitle.pack(fill=X)
+
+    frmInstruction = Frame(leinstrScreen, width=width, height=(height - 80))
+    frmInstruction.pack(fill=BOTH, expand=TRUE)
+
+    lblInstruction = Label(frmInstruction,
+                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis sapien nisi,"
+                                 "a mollis turpis ullamcorper non. Duis in egestas nunc. Duis non neque ullamcorper, lacinia purus vitae,"
+                                 " condimentum augue. Curabitur massa metus, facilisis ac ipsum vel, mattis vehicula velit. "
+                                 "Aenean gravida, odio in imperdiet pharetra, metus nulla eleifend mauris, id cursus neque leo id magna. "
+                                 "Praesent pulvinar nunc urna, quis ultrices dui suscipit quis.", font=("Arial", 20),
+                            justify=LEFT)
+    lblInstruction.bind('<Configure>', lambda e: lblInstruction.config(wraplength=width * 0.95))
+    lblInstruction.pack(fill=X, padx=10, pady=20)
+
+    btnBegin = ttk.Button(leinstrScreen, text="Begin", command=lambda: returnLEye())
+    btnBegin.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=E)
+
+    leinstrScreen.mainloop()
+######################
+
+######################
+def righteyeinstr():
+    global reinstrScreen
+    reinstrScreen = Toplevel(main)
+    screen_width = reinstrScreen.winfo_screenwidth()
+    screen_height = reinstrScreen.winfo_screenheight()
+    width = screen_width * 0.7
+    height = screen_height * 0.7
+    x = (screen_width / 2) - (width / 2)
+    y = (screen_height / 2) - (height / 2)
+
+    reinstrScreen.title("Visual Acuity Assessment Device for Mute and/or Mute Individuals")
+    reinstrScreen.geometry("%dx%d+%d+%d" % (width, height, x, y))
+    reinstrScreen.overrideredirect(0)
+    reinstrScreen.pack_propagate(0)
+
+    btnReturn = ttk.Button(reinstrScreen, text="Return", command=lambda: returnREye())
+    btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
+    lblTitle = Label(reinstrScreen, text="INSTRUCTIONS BEFORE THE ASSESSMENT", font=("Arial Black", 40))
+    lblTitle.pack(fill=X)
+
+    frmInstruction = Frame(reinstrScreen, width=width, height=(height - 80))
+    frmInstruction.pack(fill=BOTH, expand=TRUE)
+
+    lblInstruction = Label(frmInstruction, text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis sapien nisi,"
+                                                "a mollis turpis ullamcorper non. Duis in egestas nunc. Duis non neque ullamcorper, lacinia purus vitae,"
+                                                " condimentum augue. Curabitur massa metus, facilisis ac ipsum vel, mattis vehicula velit. "
+                                                "Aenean gravida, odio in imperdiet pharetra, metus nulla eleifend mauris, id cursus neque leo id magna. "
+                                                "Praesent pulvinar nunc urna, quis ultrices dui suscipit quis.", font=("Arial", 20), justify=LEFT)
+    lblInstruction.bind('<Configure>', lambda e: lblInstruction.config(wraplength=width * 0.95))
+    lblInstruction.pack(fill=X, padx=10, pady=20)
+
+    btnBegin = ttk.Button(reinstrScreen, text="Begin", command=lambda: returnREye())
+    btnBegin.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=E)
+
+    reinstrScreen.mainloop()
 ######################
 
 ######################
