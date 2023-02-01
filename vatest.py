@@ -1,6 +1,9 @@
 import pickle
 import random
 import string
+import threading
+import time
+from threading import Timer
 from tkinter import *
 from tkinter import ttk
 
@@ -17,6 +20,7 @@ mp_hands = mp.solutions.hands
 # Globally accessible variables
 detected_letters = []
 random_letters = []
+temp_letters = []
 camera_width = 320
 camera_height = 240
 
@@ -80,6 +84,8 @@ def level_one():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
+    run_level_one.geometry("%dx%d+%d+%d" % (width, height, x, y))
+    run_level_one.overrideredirect(0)
 
     # Generate the random letters
     def gen_ran_letters():
@@ -201,6 +207,7 @@ def level_one():  # Define self as global variable
     cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
+    ign, frame = cap.read()
 
     # Function for the OpenCV
     def camera_display():
@@ -241,6 +248,51 @@ def level_one():  # Define self as global variable
                         mp_drawing_styles.get_default_hand_landmarks_style(),
                         mp_drawing_styles.get_default_hand_connections_style(),
                     )
+
+                # Store generated letters to a list after a certain amount of time
+                def countdown():
+                    TIMER = int(5)  # Set the duration of countdown
+                    prev_time = time.time()  # Get the current time initially
+
+                    while TIMER > 0:
+                        current_time = (
+                            time.time()
+                        )  # Get current time for countdown purposes
+                        if current_time - prev_time >= 1:
+                            prev_time = current_time
+                            # print(TIMER)
+                            print(y_pred[0])
+                            TIMER -= 1
+
+                    if len(detected_letters) is 5:
+                        quit
+
+                    temp_letters.append(y_pred[0])
+
+                    if len(temp_letters) is 10:
+                        for i in range(len(temp_letters)):
+                            if i % 2 is 0:  # Every even indices
+                                detected_letters.append(temp_letters[i])
+
+                        print(detected_letters)
+
+                    if len(temp_letters) % 2 == 0:
+                        time.sleep(1)
+
+                countdown()
+                # def timeout():
+
+                # count = 5
+                # while count <= 5:
+                #     t = Timer(
+                #         5.0, timeout
+                #     )  # After 5 seconds, timeout() gets executed
+                #     t.start()
+                #     detected_letters.append(y_pred[0])
+                #     count -= 1
+                #     t.cancel()
+                # else:
+                #     print(detected_letters)
 
         frameRGBA = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
         img = Image.fromarray(frameRGBA)
