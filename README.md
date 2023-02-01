@@ -1,5 +1,7 @@
-# hand-gesture-recognition
+# Visual Acuity Test Assessment Tool
 
-pip install -r requirements.txt
+## Install the requirements first:
+`pip install -r requirements.txt
 
-python hands_gesture_recog.py
+## Run the program
+`python vatest.py
