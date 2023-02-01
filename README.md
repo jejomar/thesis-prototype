@@ -1,7 +1,7 @@
 # Visual Acuity Test Assessment Tool
 
 ## Install the requirements first:
-`pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 ## Run the program
-`python vatest.py
+`python vatest.py`
