@@ -38,6 +38,7 @@ with open("model.pkl", "rb") as f:
 
 # Constants
 LEVEL_ONE_FONT = ("Courier", 200, "bold")
+CUE_FONT = ("Courier", 50)
 
 # Global functions
 # def timeout():
@@ -167,9 +168,14 @@ def level_one():  # Define self as global variable
 
     # Display the camera alongside the generated letters
     camera_frame = Frame(
-        run_level_one, width=camera_width, height=camera_height, bg="black"
+        run_level_one, width=camera_width, height=camera_height
     )
     camera_frame.pack(side=BOTTOM, fill=X)
+
+    cue_label = Label(
+        camera_frame, text=" ", font=CUE_FONT
+    )
+    cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
     def image_processed(hand_img):
@@ -238,6 +244,8 @@ def level_one():  # Define self as global variable
         global start_time
         global finish
 
+        curr = datetime.datetime.now()
+
         _, frame = cap.read()
         frame = cv2.flip(frame, 1)
 
@@ -265,51 +273,65 @@ def level_one():  # Define self as global variable
             # Draw the hand annotations on the image
             img_bgr = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
-            if output.multi_hand_landmarks:
-                for hand_landmarks in output.multi_hand_landmarks:
-                    mp_drawing.draw_landmarks(
-                        frame,
-                        hand_landmarks,
-                        mp_hands.HAND_CONNECTIONS,
-                        mp_drawing_styles.get_default_hand_landmarks_style(),
-                        mp_drawing_styles.get_default_hand_connections_style(),
-                    )
+            for hand_landmarks in output.multi_hand_landmarks:
+                mp_drawing.draw_landmarks(
+                    frame,
+                    hand_landmarks,
+                    mp_hands.HAND_CONNECTIONS,
+                    mp_drawing_styles.get_default_hand_landmarks_style(),
+                    mp_drawing_styles.get_default_hand_connections_style(),
+                )
 
-            # For verfication and time
-
-            # Verification Section
-            def verify():
-                counter = 0
-                for i in range(len(random_letters)):
-                    if random_letters[i] is not detected_letters[i]:
-                        counter += 1
-
-                if counter == 0:
-                    print("All correct!")
-                else:
-                    print("Print previous score.")
-
-            curr = datetime.datetime.now()
             print(f"Start: {start_time.isoformat()}")
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            if len(detected_letters) < 5:
-                if (int((curr - start_time).total_seconds())) is 8:
-                    if output.multi_hand_landmarks:
-                        detected_letters.append(y_pred[0])
-                        start_time = curr
-                        curr = datetime.datetime.now()
-                        finish = start_time + datetime.timedelta(seconds=5)
-                        print("Appending...")
-                        print(detected_letters)
-                        time.sleep(3)
-                else:
-                    print("Please hold the gesture.")
+            # For verfication and time
 
-            if len(detected_letters) is 5:
-                print(detected_letters)
-                verify()
+            # Verification Section
+        def verify():
+            counter = 0
+            arrlen = len(random_letters)
+            for i in range(arrlen):
+                if detected_letters[i] is random_letters[i]:
+                    counter = counter + 1
+
+            if counter == arrlen:
+                print("All correct!")
+                exit()
+            else:
+                print(str(counter) + "/" + str(arrlen))
+                exit()
+
+        if len(detected_letters) < 5:
+
+            if output.multi_hand_landmarks:
+                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                if len(detected_letters) == 0:
+                    countdown = 5
+                else:
+                    countdown = 8
+
+                if (int((curr - start_time).total_seconds())) is countdown:
+                    detected_letters.append(y_pred[0])
+                    start_time = curr
+                    curr = datetime.datetime.now()
+                    finish = start_time + datetime.timedelta(seconds=5)
+                    print(detected_letters)
+                    cv2.waitKey(3000)
+                else:
+                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+            else:
+                cue_label.config(text="No hands detected.")
+                start_time = curr
+                curr = datetime.datetime.now()
+                finish = start_time + datetime.timedelta(seconds=5)
+
+        else:
+            verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
@@ -318,6 +340,8 @@ def level_one():  # Define self as global variable
         cam_feed.after(10, camera_display)
 
         cv2.imshow("test", frame)  # This works though?
+        cv2.setWindowProperty("test", cv2.WND_PROP_TOPMOST, 1)
+        cv2.moveWindow("test", 1595, 810)
 
     camera_display()
 
