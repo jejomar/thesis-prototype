@@ -1,3 +1,4 @@
+import datetime
 import pickle
 import random
 import string
@@ -12,11 +13,6 @@ import mediapipe as mp
 import numpy as np
 from PIL import Image, ImageTk
 
-# Initialize MediaPipe
-mp_drawing = mp.solutions.drawing_utils
-mp_drawing_styles = mp.solutions.drawing_styles
-mp_hands = mp.solutions.hands
-
 # Globally accessible variables
 detected_letters = []
 random_letters = []
@@ -24,8 +20,30 @@ temp_letters = []
 camera_width = 320
 camera_height = 240
 
+
+# Initialize MediaPipe
+mp_drawing = mp.solutions.drawing_utils
+mp_drawing_styles = mp.solutions.drawing_styles
+mp_hands = mp.solutions.hands
+
+# Configure OpenCV
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
+
+# Open the svm model
+with open("model.pkl", "rb") as f:
+    svm = pickle.load(f)
+
+
 # Constants
 LEVEL_ONE_FONT = ("Courier", 200, "bold")
+
+# Global functions
+# def timeout():
+#     start = datetime.now()
+
+#     if datetime.timedelta.seconds(time.time()) and datetime.timedelta.seconds(start) is 5:
 
 
 def main():
@@ -34,6 +52,8 @@ def main():
 
     # Define root frame
     main = Tk()
+
+    main.bind("<Escape>", lambda e: main.quit())
 
     # Define window geometry variables
     screen_width = main.winfo_screenwidth()
@@ -87,6 +107,9 @@ def level_one():  # Define self as global variable
     run_level_one.geometry("%dx%d+%d+%d" % (width, height, x, y))
     run_level_one.overrideredirect(0)
 
+    global start_time
+    global finish
+
     # Generate the random letters
     def gen_ran_letters():
         letters_list = [
@@ -119,10 +142,6 @@ def level_one():  # Define self as global variable
         random_letters = random.sample(letters_list, 5)
         return random_letters
 
-    # Run the generate function and set it to the global list 'random_letters'
-    random_letters = gen_ran_letters()
-    print(random_letters)
-
     # Print the generated letters on the screen
     def print_letters():
         # Define self as a global variable
@@ -131,6 +150,10 @@ def level_one():  # Define self as global variable
         # Create a frame for the letter generated
         letter_frame = Frame(run_level_one, width=1920, height=840)
         letter_frame.pack(fill=X, expand=True)
+
+        # Run the generate function and set it to the global list 'random_letters'
+        random_letters = gen_ran_letters()
+        print(random_letters)
 
         # Iterate through the list of random_letters
         for i in range(len(random_letters)):
@@ -144,11 +167,11 @@ def level_one():  # Define self as global variable
 
     # Display the camera alongside the generated letters
     camera_frame = Frame(
-        run_level_one, width=camera_width, height=camera_height, bg="blue"
+        run_level_one, width=camera_width, height=camera_height, bg="black"
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    # Function for image processing
+    # # Function for image processing
     def image_processed(hand_img):
         global output
         img_rgb = cv2.cvtColor(
@@ -194,26 +217,29 @@ def level_one():  # Define self as global variable
         except:
             return np.zeros([1, 63], dtype=int)[0]
 
-    # Open the svm model
-    with open("model.pkl", "rb") as f:
-        svm = pickle.load(f)
+    # # Open the svm model
+    # with open("model.pkl", "rb") as f:
+    #     svm = pickle.load(f)
 
     # Display the camera feed in the GUI
     cam_feed = Label(run_level_one)
-    # cam_feed.pack(anchor=SE)
     cam_feed.place(relx=1, rely=1, x=0, y=0, anchor="se")
 
-    # Configure OpenCV
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-    ign, frame = cap.read()
+    start_time = datetime.datetime.now()
+    print(f"Start: {start_time}")
+
+    finish = start_time + datetime.timedelta(seconds=5)
+    print(f"Finish: {finish.isoformat()}")
 
     # Function for the OpenCV
     def camera_display():
         global y_pred
+        global frame
+        global start_time
+        global finish
 
-        ign, frame = cap.read()
+        _, frame = cap.read()
+        frame = cv2.flip(frame, 1)
 
         data = image_processed(frame)
 
@@ -249,56 +275,49 @@ def level_one():  # Define self as global variable
                         mp_drawing_styles.get_default_hand_connections_style(),
                     )
 
-                # Store generated letters to a list after a certain amount of time
-                def countdown():
-                    TIMER = int(5)  # Set the duration of countdown
-                    prev_time = time.time()  # Get the current time initially
+            # For verfication and time
 
-                    while TIMER > 0:
-                        current_time = (
-                            time.time()
-                        )  # Get current time for countdown purposes
-                        if current_time - prev_time >= 1:
-                            prev_time = current_time
-                            # print(TIMER)
-                            print(y_pred[0])
-                            TIMER -= 1
+            # Verification Section
+            def verify():
+                counter = 0
+                for i in range(len(random_letters)):
+                    if random_letters[i] is not detected_letters[i]:
+                        counter += 1
 
-                    if len(detected_letters) is 5:
-                        quit
+                if counter == 0:
+                    print("All correct!")
+                else:
+                    print("Print previous score.")
 
-                    temp_letters.append(y_pred[0])
+            curr = datetime.datetime.now()
+            print(f"Start: {start_time.isoformat()}")
+            print(f"Finish: {finish.isoformat()}")
+            print(f"Current: {curr.isoformat()}")
 
-                    if len(temp_letters) is 10:
-                        for i in range(len(temp_letters)):
-                            if i % 2 is 0:  # Every even indices
-                                detected_letters.append(temp_letters[i])
-
+            if len(detected_letters) < 5:
+                if (int((curr - start_time).total_seconds())) is 8:
+                    if output.multi_hand_landmarks:
+                        detected_letters.append(y_pred[0])
+                        start_time = curr
+                        curr = datetime.datetime.now()
+                        finish = start_time + datetime.timedelta(seconds=5)
+                        print("Appending...")
                         print(detected_letters)
+                        time.sleep(3)
+                else:
+                    print("Please hold the gesture.")
 
-                    if len(temp_letters) % 2 == 0:
-                        time.sleep(1)
+            if len(detected_letters) is 5:
+                print(detected_letters)
+                verify()
 
-                countdown()
-                # def timeout():
-
-                # count = 5
-                # while count <= 5:
-                #     t = Timer(
-                #         5.0, timeout
-                #     )  # After 5 seconds, timeout() gets executed
-                #     t.start()
-                #     detected_letters.append(y_pred[0])
-                #     count -= 1
-                #     t.cancel()
-                # else:
-                #     print(detected_letters)
-
-        frameRGBA = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
-        img = Image.fromarray(frameRGBA)
+        frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
+        img = Image.fromarray(frameRGB)
         imgtk = ImageTk.PhotoImage(image=img)
         cam_feed.configure(image=imgtk)
-        cam_feed.after(5, camera_display)
+        cam_feed.after(10, camera_display)
+
+        cv2.imshow("test", frame)  # This works though?
 
     camera_display()
 
