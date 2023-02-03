@@ -147,6 +147,7 @@ def level_one():  # Define self as global variable
     def print_letters():
         # Define self as a global variable
         global letter_frame
+        global random_letters
 
         # Create a frame for the letter generated
         letter_frame = Frame(run_level_one, width=1920, height=840)
@@ -293,14 +294,14 @@ def level_one():  # Define self as global variable
             counter = 0
             arrlen = len(random_letters)
             for i in range(arrlen):
-                if detected_letters[i] is random_letters[i]:
+                if detected_letters[i] == random_letters[i]:
                     counter = counter + 1
 
             if counter == arrlen:
                 print("All correct!")
                 exit()
             else:
-                print(str(counter) + "/" + str(arrlen))
+                print("Correct made: " + str(counter) + "/" + str(arrlen))
                 exit()
 
         if len(detected_letters) < 5:
