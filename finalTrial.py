@@ -25,6 +25,17 @@ detected_letters8 = []
 detected_letters9 = []
 detected_letters10 = []
 
+score1="---"
+score2="---"
+score3="---"
+score4="---"
+score5="---"
+score6="---"
+score7="---"
+score8="---"
+score9="---"
+score10="---"
+
 camera_width = 320
 camera_height = 240
 
@@ -37,7 +48,6 @@ mp_hands = mp.solutions.hands
 # Open the svm model
 with open("model.pkl", "rb") as f:
     svm = pickle.load(f)
-
 
 # Constants
 CUE_FONT = ("Courier", 50)
@@ -574,11 +584,14 @@ def level_one():  # Define self as global variable
                     ctr_level_one = ctr_level_one + 1
 
             if ctr_level_one != 0:
-                print(str(ctr_level_one) + "/" + str(arrlen))
+                score1=str(ctr_level_one) + "/" + str(arrlen)
+                print(score1)
                 cv2.destroyAllWindows()
                 level_two()
                 run_level_one.destroy()
             else:
+                cv2.destroyAllWindows()
+                run_level_one.destroy()
                 results()
 
         if len(detected_letters1) < 5:
@@ -700,7 +713,7 @@ def level_two():  # Define self as global variable
             max_num_hands=1,
             min_detection_confidence=0.8,
             model_complexity=1,
-            min_tracking_confidence=0.8,
+            min_tracking_confidence=0.70,
         )  # Initialize Hands
 
         output = hands.process(img_rgb)  # Results
@@ -804,12 +817,15 @@ def level_two():  # Define self as global variable
                     ctr_level_two = ctr_level_two + 1
 
             if ctr_level_two != 0:
-                print(str(ctr_level_two) + "/" + str(arrlen))
+                score2=str(ctr_level_two) + "/" + str(arrlen)
+                print(score2)
                 cap.release()
                 cv2.destroyAllWindows()
                 run_level_two.withdraw()
                 level_three()
             else:
+                cv2.destroyAllWindows()
+                run_level_two.destroy()
                 results()
 
         if len(detected_letters2) < 5:
@@ -1035,7 +1051,8 @@ def level_three():  # Define self as global variable
                     ctr_level_three = ctr_level_three + 1
 
             if ctr_level_three != 0:
-                print(str(ctr_level_three) + "/" + str(arrlen))
+                score3=str(ctr_level_three) + "/" + str(arrlen)
+                print(score3)
                 cap.release()
                 cv2.destroyAllWindows()
                 run_level_three.withdraw()
@@ -1266,7 +1283,8 @@ def level_four():  # Define self as global variable
                     ctr_level_four = ctr_level_four + 1
 
             if ctr_level_four != 0:
-                print(str(ctr_level_four) + "/" + str(arrlen))
+                score4 = str(ctr_level_four) + "/" + str(arrlen)
+                print(score4)
                 cap.release()
                 cv2.destroyAllWindows()
                 run_level_four.withdraw()
@@ -1496,7 +1514,8 @@ def level_five():  # Define self as global variable
                     ctr_level_five = ctr_level_five + 1
 
             if ctr_level_five != 0:
-                print(str(ctr_level_five) + "/" + str(arrlen))
+                score5 = str(ctr_level_five) + "/" + str(arrlen)
+                print(score5)
                 cap.release()
                 cv2.destroyAllWindows()
                 run_level_five.withdraw()
@@ -1727,7 +1746,8 @@ def level_six():  # Define self as global variable
                     ctr_level_six = ctr_level_six + 1
 
             if ctr_level_six != 0:
-                print(str(ctr_level_six) + "/" + str(arrlen))
+                score6 = str(ctr_level_six) + "/" + str(arrlen)
+                print(score6)
                 cap.release()
                 cv2.destroyAllWindows()
                 run_level_six.withdraw()
@@ -1958,7 +1978,8 @@ def level_seven():  # Define self as global variable
                     ctr_level_seven = ctr_level_seven + 1
 
             if ctr_level_seven != 0:
-                print(str(ctr_level_seven) + "/" + str(arrlen))
+                score7 = str(ctr_level_seven) + "/" + str(arrlen)
+                print(score7)
                 cap.release()
                 cv2.destroyAllWindows()
                 run_level_seven.withdraw()
@@ -2189,7 +2210,8 @@ def level_eight():  # Define self as global variable
                     ctr_level_eight = ctr_level_eight + 1
 
             if ctr_level_eight != 0:
-                print(str(ctr_level_eight) + "/" + str(arrlen))
+                score8 = str(ctr_level_eight) + "/" + str(arrlen)
+                print(score8)
                 cap.release()
                 cv2.destroyAllWindows()
                 run_level_eight.withdraw()
@@ -2420,7 +2442,8 @@ def level_nine():  # Define self as global variable
                     ctr_level_nine = ctr_level_nine + 1
 
             if ctr_level_nine != 0:
-                print(str(ctr_level_nine) + "/" + str(arrlen))
+                score9 = str(ctr_level_nine) + "/" + str(arrlen)
+                print(score9)
                 cap.release()
                 cv2.destroyAllWindows()
                 run_level_nine.withdraw()
@@ -2651,7 +2674,8 @@ def level_ten():  # Define self as global variable
                     ctr_level_ten = ctr_level_ten + 1
 
             if ctr_level_ten != 0:
-                print(str(ctr_level_ten) + "/" + str(arrlen))
+                score10 = str(ctr_level_ten) + "/" + str(arrlen)
+                print(score10)
                 cap.release()
                 cv2.destroyAllWindows()
                 run_level_ten.withdraw()
@@ -2705,6 +2729,17 @@ def level_ten():  # Define self as global variable
 ######################
 def results():  # Define self as global variable
     global resultsScreen
+    global score1
+    global score2
+    global score3
+    global score4
+    global score5
+    global score6
+    global score7
+    global score8
+    global score9
+    global score10
+
     # Create a frame for the current level
     resultsScreen = Toplevel(main)
 
@@ -2717,6 +2752,84 @@ def results():  # Define self as global variable
     y = (screen_height / 2) - (height / 2)
     resultsScreen.geometry("%dx%d+%d+%d" % (width, height, x, y))
     resultsScreen.overrideredirect(0)
+
+    lblTitle = Label(resultsScreen, text="VISUAL ACUITY ASSESSMENT RESULTS", font=("Arial Black", 40))
+    lblTitle.pack(fill=X)
+
+    frmLevel = Frame(resultsScreen, width=width, height=(height - 60))
+    frmLevel.pack(side=LEFT, pady=(20, 20), padx=(20, 10), fill=BOTH, expand=TRUE)
+    frmMeasurement = Frame(resultsScreen, width=width, height=(height - 60))
+    frmMeasurement.pack(side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE)
+    frmScore = Frame(resultsScreen, width=width, height=(height - 60))
+    frmScore.pack(side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE)
+    frmBottom = Frame(resultsScreen, width=width, height=20)
+    frmBottom.pack(side=BOTTOM, padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
+
+    lblLevel1 = Label(frmLevel, text="Level 1", font=("Arial", 15, "bold"))
+    lblLevel1.pack(fill=X)
+    lblLevel2 = Label(frmLevel, text="Level 2", font=("Arial", 15, "bold"))
+    lblLevel2.pack(fill=X)
+    lblLevel3 = Label(frmLevel, text="Level 3", font=("Arial", 15, "bold"))
+    lblLevel3.pack(fill=X)
+    lblLevel4 = Label(frmLevel, text="Level 4", font=("Arial", 15, "bold"))
+    lblLevel4.pack(fill=X)
+    lblLevel5 = Label(frmLevel, text="Level 5", font=("Arial", 15, "bold"))
+    lblLevel5.pack(fill=X)
+    lblLevel6= Label(frmLevel, text="Level 6", font=("Arial", 15, "bold"))
+    lblLevel6.pack(fill=X)
+    lblLevel7 = Label(frmLevel, text="Level 7", font=("Arial", 15, "bold"))
+    lblLevel7.pack(fill=X)
+    lblLevel8 = Label(frmLevel, text="Level 8", font=("Arial", 15, "bold"))
+    lblLevel8.pack(fill=X)
+    lblLevel9 = Label(frmLevel, text="Level 9", font=("Arial", 15, "bold"))
+    lblLevel9.pack(fill=X)
+    lblLevel10 = Label(frmLevel, text="Level 10", font=("Arial", 15, "bold"))
+    lblLevel10.pack(fill=X)
+
+    lblMeas1 = Label(frmMeasurement, text="20/70", font=("Arial", 15, "bold"))
+    lblMeas1.pack(fill=X)
+    lblMeas2 = Label(frmMeasurement, text="20/60", font=("Arial", 15, "bold"))
+    lblMeas2.pack(fill=X)
+    lblMeas3 = Label(frmMeasurement, text="20/50", font=("Arial", 15, "bold"))
+    lblMeas3.pack(fill=X)
+    lblMeas4 = Label(frmMeasurement, text="20/40", font=("Arial", 15, "bold"))
+    lblMeas4.pack(fill=X)
+    lblMeas5 = Label(frmMeasurement, text="20/30", font=("Arial", 15, "bold"))
+    lblMeas5.pack(fill=X)
+    lblMeas6 = Label(frmMeasurement, text="20/20", font=("Arial", 15, "bold"))
+    lblMeas6.pack(fill=X)
+    lblMeas7 = Label(frmMeasurement, text="20/15", font=("Arial", 15, "bold"))
+    lblMeas7.pack(fill=X)
+    lblMeas8 = Label(frmMeasurement, text="20/10", font=("Arial", 15, "bold"))
+    lblMeas8.pack(fill=X)
+    lblMeas9 = Label(frmMeasurement, text="20/7", font=("Arial", 15, "bold"))
+    lblMeas9.pack(fill=X)
+    lblMeas10 = Label(frmMeasurement, text="20/4", font=("Arial", 15, "bold"))
+    lblMeas10.pack(fill=X)
+
+    lblResult1 = Label(frmScore, text=score1, font=("Arial", 15, "bold"))
+    lblResult1.pack(fill=X)
+    lblResult2 = Label(frmScore, text=score2, font=("Arial", 15, "bold"))
+    lblResult2.pack(fill=X)
+    lblResult3 = Label(frmScore, text=score3, font=("Arial", 15, "bold"))
+    lblResult3.pack(fill=X)
+    lblResult4 = Label(frmScore, text=score4, font=("Arial", 15, "bold"))
+    lblResult4.pack(fill=X)
+    lblResult5 = Label(frmScore, text=score5, font=("Arial", 15, "bold"))
+    lblResult5.pack(fill=X)
+    lblResult6 = Label(frmScore, text=score6, font=("Arial", 15, "bold"))
+    lblResult6.pack(fill=X)
+    lblResult7 = Label(frmScore, text=score7, font=("Arial", 15, "bold"))
+    lblResult7.pack(fill=X)
+    lblResult8 = Label(frmScore, text=score8, font=("Arial", 15, "bold"))
+    lblResult8.pack(fill=X)
+    lblResult9 = Label(frmScore, text=score9, font=("Arial", 15, "bold"))
+    lblResult9.pack(fill=X)
+    lblResult10 = Label(frmScore, text=score10, font=("Arial", 15, "bold"))
+    lblResult10.pack(fill=X)
+
+    btnFinish = ttk.Button(frmBottom, text="Finish", command=lambda: exit())
+    btnFinish.pack(padx=10, pady=10, ipadx=30, ipady=10)
 ######################
 
 ######################
