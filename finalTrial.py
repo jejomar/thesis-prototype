@@ -14,9 +14,17 @@ import numpy as np
 from PIL import Image, ImageTk
 
 # Globally accessible variables
-detected_letters = []
-random_letters = []
-temp_letters = []
+detected_letters1 = []
+detected_letters2 = []
+detected_letters3 = []
+detected_letters4 = []
+detected_letters5 = []
+detected_letters6 = []
+detected_letters7 = []
+detected_letters8 = []
+detected_letters9 = []
+detected_letters10 = []
+
 camera_width = 320
 camera_height = 240
 
@@ -480,7 +488,7 @@ def level_one():  # Define self as global variable
             min_tracking_confidence=0.8,
         )  # Initialize Hands
 
-        output = hands.process(img_flip)  # Results
+        output = hands.process(img_rgb)  # Results
         hands.close()
 
         try:
@@ -517,6 +525,8 @@ def level_one():  # Define self as global variable
         curr = datetime.datetime.now()
 
         _, frame = cap.read()
+        frame=cv2.flip(frame,1)
+
 
         data = image_processed(frame)
 
@@ -560,35 +570,35 @@ def level_one():  # Define self as global variable
             ctr_level_one = 0
             arrlen = len(random_one)
             for i in range(arrlen):
-                if detected_letters[i] == random_one[i]:
+                if detected_letters1[i] == random_one[i]:
                     ctr_level_one = ctr_level_one + 1
 
             if ctr_level_one != 0:
                 print(str(ctr_level_one) + "/" + str(arrlen))
                 cv2.destroyAllWindows()
-                run_level_one.destroy()
                 level_two()
+                run_level_one.destroy()
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters1) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters1) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters1.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters1)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
@@ -790,7 +800,7 @@ def level_two():  # Define self as global variable
             ctr_level_two = 0
             arrlen = len(random_two)
             for i in range(arrlen):
-                if detected_letters[i] == random_two[i]:
+                if detected_letters2[i] == random_two[i]:
                     ctr_level_two = ctr_level_two + 1
 
             if ctr_level_two != 0:
@@ -802,24 +812,24 @@ def level_two():  # Define self as global variable
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters2) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters2) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters2.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters2)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
@@ -1021,7 +1031,7 @@ def level_three():  # Define self as global variable
             ctr_level_three = 0
             arrlen = len(random_thr)
             for i in range(arrlen):
-                if detected_letters[i] == random_thr[i]:
+                if detected_letters3[i] == random_thr[i]:
                     ctr_level_three = ctr_level_three + 1
 
             if ctr_level_three != 0:
@@ -1033,24 +1043,24 @@ def level_three():  # Define self as global variable
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters3) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters3) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters3.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters3)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
@@ -1252,7 +1262,7 @@ def level_four():  # Define self as global variable
             ctr_level_four = 0
             arrlen = len(random_fou)
             for i in range(arrlen):
-                if detected_letters[i] == random_fou[i]:
+                if detected_letters4[i] == random_fou[i]:
                     ctr_level_four = ctr_level_four + 1
 
             if ctr_level_four != 0:
@@ -1264,24 +1274,24 @@ def level_four():  # Define self as global variable
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters4) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters4) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters4.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters4)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
@@ -1482,7 +1492,7 @@ def level_five():  # Define self as global variable
             ctr_level_five = 0
             arrlen = len(random_five)
             for i in range(arrlen):
-                if detected_letters[i] == random_five[i]:
+                if detected_letters5[i] == random_five[i]:
                     ctr_level_five = ctr_level_five + 1
 
             if ctr_level_five != 0:
@@ -1494,24 +1504,24 @@ def level_five():  # Define self as global variable
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters5) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters5) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters5.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters5)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
@@ -1713,7 +1723,7 @@ def level_six():  # Define self as global variable
             ctr_level_six = 0
             arrlen = len(random_six)
             for i in range(arrlen):
-                if detected_letters[i] == random_six[i]:
+                if detected_letters6[i] == random_six[i]:
                     ctr_level_six = ctr_level_six + 1
 
             if ctr_level_six != 0:
@@ -1725,24 +1735,24 @@ def level_six():  # Define self as global variable
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters6) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters6) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters6.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters6)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
@@ -1944,7 +1954,7 @@ def level_seven():  # Define self as global variable
             ctr_level_seven = 0
             arrlen = len(random_seven)
             for i in range(arrlen):
-                if detected_letters[i] == random_seven[i]:
+                if detected_letters7[i] == random_seven[i]:
                     ctr_level_seven = ctr_level_seven + 1
 
             if ctr_level_seven != 0:
@@ -1956,24 +1966,24 @@ def level_seven():  # Define self as global variable
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters7) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters7) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters7.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters7)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
@@ -2175,7 +2185,7 @@ def level_eight():  # Define self as global variable
             ctr_level_eight = 0
             arrlen = len(random_eight)
             for i in range(arrlen):
-                if detected_letters[i] == random_eight[i]:
+                if detected_letters8[i] == random_eight[i]:
                     ctr_level_eight = ctr_level_eight + 1
 
             if ctr_level_eight != 0:
@@ -2187,24 +2197,24 @@ def level_eight():  # Define self as global variable
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters8) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters8) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters8.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters8)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
@@ -2406,7 +2416,7 @@ def level_nine():  # Define self as global variable
             ctr_level_nine = 0
             arrlen = len(random_nine)
             for i in range(arrlen):
-                if detected_letters[i] == random_nine[i]:
+                if detected_letters9[i] == random_nine[i]:
                     ctr_level_nine = ctr_level_nine + 1
 
             if ctr_level_nine != 0:
@@ -2418,24 +2428,24 @@ def level_nine():  # Define self as global variable
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters9) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters9) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters9.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters9)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
@@ -2637,7 +2647,7 @@ def level_ten():  # Define self as global variable
             ctr_level_ten = 0
             arrlen = len(random_ten)
             for i in range(arrlen):
-                if detected_letters[i] == random_ten[i]:
+                if detected_letters10[i] == random_ten[i]:
                     ctr_level_ten = ctr_level_ten + 1
 
             if ctr_level_ten != 0:
@@ -2649,24 +2659,24 @@ def level_ten():  # Define self as global variable
             else:
                 results()
 
-        if len(detected_letters) < 5:
+        if len(detected_letters10) < 5:
 
             if output.multi_hand_landmarks:
                 #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
                 #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
                 #Ang countdown nya is set to five lang. Pero, kapag may laman na,
                 #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
-                if len(detected_letters) == 0:
+                if len(detected_letters10) == 0:
                     countdown = 5
                 else:
                     countdown = 8
 
                 if (int((curr - start_time).total_seconds())) is countdown:
-                    detected_letters.append(y_pred[0])
+                    detected_letters10.append(y_pred[0])
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
-                    print(detected_letters)
+                    print(detected_letters10)
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
