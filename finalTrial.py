@@ -25,16 +25,16 @@ detected_letters8 = []
 detected_letters9 = []
 detected_letters10 = []
 
-score1="---"
-score2="---"
-score3="---"
-score4="---"
-score5="---"
-score6="---"
-score7="---"
-score8="---"
-score9="---"
-score10="---"
+score1 = "---"
+score2 = "---"
+score3 = "---"
+score4 = "---"
+score5 = "---"
+score6 = "---"
+score7 = "---"
+score8 = "---"
+score9 = "---"
+score10 = "---"
 
 camera_width = 320
 camera_height = 240
@@ -52,11 +52,6 @@ with open("model.pkl", "rb") as f:
 # Constants
 CUE_FONT = ("Courier", 50)
 
-# Global functions
-# def timeout():
-#     start = datetime.now()
-
-#     if datetime.timedelta.seconds(time.time()) and datetime.timedelta.seconds(start) is 5:
 
 ######################
 def gen_ran_letters():
@@ -89,21 +84,31 @@ def gen_ran_letters():
 
     random_letters = random.sample(letters_list, 5)
     return random_letters
+
+
 ######################
 
 ######################
 def returnTitle():
     levselScreen.withdraw()
     main.deiconify()
+
+
 def returnLevSel():
     eyeScreen.withdraw()
     main.deiconify()
+
+
 def returnLEye():
     leinstrScreen.withdraw()
     main.deiconify()
+
+
 def returnREye():
     reinstrScreen.withdraw()
     main.deiconify()
+
+
 ######################
 
 ######################
@@ -118,6 +123,8 @@ def eyeChosen(eye):
     else:
         eyeScreen.withdraw()
         righteyeinstr()
+
+
 ######################
 
 ######################
@@ -127,103 +134,105 @@ def lvlChosen():
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_one();
+            level_one()
         elif chosenLvl == "two":
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_two();
+            level_two()
         elif chosenLvl == "thr":
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_three();
+            level_three()
         elif chosenLvl == "fou":
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_four();
+            level_four()
         elif chosenLvl == "fiv":
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_five();
+            level_five()
         elif chosenLvl == "six":
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_six();
+            level_six()
         elif chosenLvl == "sev":
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_seven();
+            level_seven()
         elif chosenLvl == "eig":
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_eight();
+            level_eight()
         elif chosenLvl == "nin":
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_nine();
+            level_nine()
         else:
             leinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_ten();
+            level_ten()
     else:
         if chosenLvl == "one":
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_one();
+            level_one()
         elif chosenLvl == "two":
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_two();
+            level_two()
         elif chosenLvl == "thr":
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_three();
+            level_three()
         elif chosenLvl == "fou":
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_four();
+            level_four()
         elif chosenLvl == "fiv":
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_five();
+            level_five()
         elif chosenLvl == "six":
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_six();
+            level_six()
         elif chosenLvl == "sev":
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_seven();
+            level_seven()
         elif chosenLvl == "eig":
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_eight();
+            level_eight()
         elif chosenLvl == "nin":
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_nine();
+            level_nine()
         else:
             reinstrScreen.destroy()
             eyeScreen.destroy()
             levselScreen.destroy()
-            level_ten();
+            level_ten()
+
+
 ######################
 
 ######################
@@ -239,43 +248,71 @@ def levelselect():
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
 
-    levselScreen.title("Visual Acuity Assessment Device for Mute and/or Mute Individuals")
+    levselScreen.title(
+        "Visual Acuity Assessment Device for Mute and/or Mute Individuals"
+    )
     levselScreen.geometry("%dx%d+%d+%d" % (width, height, x, y))
     levselScreen.overrideredirect(0)
     levselScreen.pack_propagate(0)
 
-    btnReturn = ttk.Button(levselScreen, text="Return", command=lambda: returnTitle())
-    btnReturn.pack(padx=10, pady=10, ipadx=30, ipady = 10, anchor=W)
-    lblTitle = Label(levselScreen, text="LEVEL SELECT", font=("Arial Black", 40))
+    btnReturn = ttk.Button(
+        levselScreen, text="Return", command=lambda: returnTitle()
+    )
+    btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
+    lblTitle = Label(
+        levselScreen, text="LEVEL SELECT", font=("Arial Black", 40)
+    )
     lblTitle.pack(fill=X)
 
-    frmTop = Frame(levselScreen, width=width, height=(height-45))
-    frmTop.pack(fill = X, pady = (30,25))
-    frmBot = Frame(levselScreen, width=width, height=(height-45))
-    frmBot.pack(fill = X, pady = (25,50))
+    frmTop = Frame(levselScreen, width=width, height=(height - 45))
+    frmTop.pack(fill=X, pady=(30, 25))
+    frmBot = Frame(levselScreen, width=width, height=(height - 45))
+    frmBot.pack(fill=X, pady=(25, 50))
 
-    btnLevel1 = ttk.Button(frmTop, text="Level 1", command=lambda: eyetest("one"))
+    btnLevel1 = ttk.Button(
+        frmTop, text="Level 1", command=lambda: eyetest("one")
+    )
     btnLevel1.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
-    btnLevel2 = ttk.Button(frmTop, text="Level 2", command=lambda: eyetest("two"))
+    btnLevel2 = ttk.Button(
+        frmTop, text="Level 2", command=lambda: eyetest("two")
+    )
     btnLevel2.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
-    btnLevel3 = ttk.Button(frmTop, text="Level 3", command=lambda: eyetest("thr"))
+    btnLevel3 = ttk.Button(
+        frmTop, text="Level 3", command=lambda: eyetest("thr")
+    )
     btnLevel3.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
-    btnLevel4 = ttk.Button(frmTop, text="Level 4", command=lambda: eyetest("fou"))
+    btnLevel4 = ttk.Button(
+        frmTop, text="Level 4", command=lambda: eyetest("fou")
+    )
     btnLevel4.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
-    btnLevel5 = ttk.Button(frmTop, text="Level 5", command=lambda: eyetest("fiv"))
+    btnLevel5 = ttk.Button(
+        frmTop, text="Level 5", command=lambda: eyetest("fiv")
+    )
     btnLevel5.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
-    btnLevel6 = ttk.Button(frmBot, text="Level 6", command=lambda: eyetest("six"))
+    btnLevel6 = ttk.Button(
+        frmBot, text="Level 6", command=lambda: eyetest("six")
+    )
     btnLevel6.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
-    btnLevel7 = ttk.Button(frmBot, text="Level 7", command=lambda: eyetest("sev"))
+    btnLevel7 = ttk.Button(
+        frmBot, text="Level 7", command=lambda: eyetest("sev")
+    )
     btnLevel7.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
-    btnLevel8 = ttk.Button(frmBot, text="Level 8", command=lambda: eyetest("eig"))
+    btnLevel8 = ttk.Button(
+        frmBot, text="Level 8", command=lambda: eyetest("eig")
+    )
     btnLevel8.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
-    btnLevel9 = ttk.Button(frmBot, text="Level 9", command=lambda: eyetest("nin"))
+    btnLevel9 = ttk.Button(
+        frmBot, text="Level 9", command=lambda: eyetest("nin")
+    )
     btnLevel9.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
-    btnLevel10 = ttk.Button(frmBot, text="Level 10", command=lambda: eyetest("ten"))
+    btnLevel10 = ttk.Button(
+        frmBot, text="Level 10", command=lambda: eyetest("ten")
+    )
     btnLevel10.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
 
     levselScreen.mainloop()
+
+
 ######################
 
 ######################
@@ -297,31 +334,53 @@ def eyetest(level):
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
 
-    eyeScreen.title("Visual Acuity Assessment Device for Mute and/or Mute Individuals")
+    eyeScreen.title(
+        "Visual Acuity Assessment Device for Mute and/or Mute Individuals"
+    )
     eyeScreen.geometry("%dx%d+%d+%d" % (width, height, x, y))
     eyeScreen.overrideredirect(0)
     eyeScreen.pack_propagate(0)
 
-    btnReturn = ttk.Button(eyeScreen, text="Return", command=lambda: returnLevSel())
+    btnReturn = ttk.Button(
+        eyeScreen, text="Return", command=lambda: returnLevSel()
+    )
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
-    lblTitle = Label(eyeScreen, text="CHOOSE THE EYE TO TEST", font=("Arial Black", 40))
+    lblTitle = Label(
+        eyeScreen, text="CHOOSE THE EYE TO TEST", font=("Arial Black", 40)
+    )
     lblTitle.pack(fill=X)
 
     frmLeft = Frame(eyeScreen, width=width, height=(height - 45))
-    frmLeft.pack(side=LEFT, pady=(20,20), padx= (20,10), fill=BOTH, expand=TRUE)
+    frmLeft.pack(
+        side=LEFT, pady=(20, 20), padx=(20, 10), fill=BOTH, expand=TRUE
+    )
     frmRight = Frame(eyeScreen, width=width, height=(height - 45))
-    frmRight.pack(side=LEFT, pady=(20,20), padx= (10,20), fill=BOTH, expand=TRUE)
+    frmRight.pack(
+        side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE
+    )
 
-    btnLeft = ttk.Button(frmLeft, text="Left Eye", image = right, command=lambda: eyeChosen("left"))
-    btnLeft.pack(pady=(30,20), padx=20, ipady=150, ipadx=200)
+    btnLeft = ttk.Button(
+        frmLeft,
+        text="Left Eye",
+        image=right,
+        command=lambda: eyeChosen("left"),
+    )
+    btnLeft.pack(pady=(30, 20), padx=20, ipady=150, ipadx=200)
     lblLeft = Label(frmLeft, text="LEFT EYE", font=("Arial", 20))
     lblLeft.pack()
-    btnRight = ttk.Button(frmRight, text="Right Eye", image = left, command=lambda: eyeChosen("right"))
-    btnRight.pack(pady=(30,20), padx=20, ipady=150, ipadx=200)
+    btnRight = ttk.Button(
+        frmRight,
+        text="Right Eye",
+        image=left,
+        command=lambda: eyeChosen("right"),
+    )
+    btnRight.pack(pady=(30, 20), padx=20, ipady=150, ipadx=200)
     lblRight = Label(frmRight, text="RIGHT EYE", font=("Arial", 20))
     lblRight.pack()
 
     eyeScreen.mainloop()
+
+
 ######################
 
 ######################
@@ -337,33 +396,50 @@ def lefteyeinstr():
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
 
-    leinstrScreen.title("Visual Acuity Assessment Device for Mute and/or Mute Individuals")
+    leinstrScreen.title(
+        "Visual Acuity Assessment Device for Mute and/or Mute Individuals"
+    )
     leinstrScreen.geometry("%dx%d+%d+%d" % (width, height, x, y))
     leinstrScreen.overrideredirect(0)
     leinstrScreen.pack_propagate(0)
 
-    btnReturn = ttk.Button(leinstrScreen, text="Return", command=lambda: returnLEye())
+    btnReturn = ttk.Button(
+        leinstrScreen, text="Return", command=lambda: returnLEye()
+    )
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
-    lblTitle = Label(leinstrScreen, text="INSTRUCTIONS BEFORE THE ASSESSMENT", font=("Arial Black", 40))
+    lblTitle = Label(
+        leinstrScreen,
+        text="INSTRUCTIONS BEFORE THE ASSESSMENT",
+        font=("Arial Black", 40),
+    )
     lblTitle.pack(fill=X)
 
     frmInstruction = Frame(leinstrScreen, width=width, height=(height - 80))
     frmInstruction.pack(fill=BOTH, expand=TRUE)
 
-    lblInstruction = Label(frmInstruction,
-                            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis sapien nisi,"
-                                 "a mollis turpis ullamcorper non. Duis in egestas nunc. Duis non neque ullamcorper, lacinia purus vitae,"
-                                 " condimentum augue. Curabitur massa metus, facilisis ac ipsum vel, mattis vehicula velit. "
-                                 "Aenean gravida, odio in imperdiet pharetra, metus nulla eleifend mauris, id cursus neque leo id magna. "
-                                 "Praesent pulvinar nunc urna, quis ultrices dui suscipit quis.", font=("Arial", 20),
-                            justify=LEFT)
-    lblInstruction.bind('<Configure>', lambda e: lblInstruction.config(wraplength=width * 0.95))
+    lblInstruction = Label(
+        frmInstruction,
+        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis sapien nisi,"
+        "a mollis turpis ullamcorper non. Duis in egestas nunc. Duis non neque ullamcorper, lacinia purus vitae,"
+        " condimentum augue. Curabitur massa metus, facilisis ac ipsum vel, mattis vehicula velit. "
+        "Aenean gravida, odio in imperdiet pharetra, metus nulla eleifend mauris, id cursus neque leo id magna. "
+        "Praesent pulvinar nunc urna, quis ultrices dui suscipit quis.",
+        font=("Arial", 20),
+        justify=LEFT,
+    )
+    lblInstruction.bind(
+        "<Configure>", lambda e: lblInstruction.config(wraplength=width * 0.95)
+    )
     lblInstruction.pack(fill=X, padx=10, pady=20)
 
-    btnBegin = ttk.Button(leinstrScreen, text="Begin", command=lambda: lvlChosen())
+    btnBegin = ttk.Button(
+        leinstrScreen, text="Begin", command=lambda: lvlChosen()
+    )
     btnBegin.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=E)
 
     leinstrScreen.mainloop()
+
+
 ######################
 
 ######################
@@ -377,35 +453,54 @@ def righteyeinstr():
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
 
-    reinstrScreen.title("Visual Acuity Assessment Device for Mute and/or Mute Individuals")
+    reinstrScreen.title(
+        "Visual Acuity Assessment Device for Mute and/or Mute Individuals"
+    )
     reinstrScreen.geometry("%dx%d+%d+%d" % (width, height, x, y))
     reinstrScreen.overrideredirect(0)
     reinstrScreen.pack_propagate(0)
 
-    btnReturn = ttk.Button(reinstrScreen, text="Return", command=lambda: returnREye())
+    btnReturn = ttk.Button(
+        reinstrScreen, text="Return", command=lambda: returnREye()
+    )
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
-    lblTitle = Label(reinstrScreen, text="INSTRUCTIONS BEFORE THE ASSESSMENT", font=("Arial Black", 40))
+    lblTitle = Label(
+        reinstrScreen,
+        text="INSTRUCTIONS BEFORE THE ASSESSMENT",
+        font=("Arial Black", 40),
+    )
     lblTitle.pack(fill=X)
 
     frmInstruction = Frame(reinstrScreen, width=width, height=(height - 80))
     frmInstruction.pack(fill=BOTH, expand=TRUE)
 
-    lblInstruction = Label(frmInstruction, text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis sapien nisi,"
-                                                "a mollis turpis ullamcorper non. Duis in egestas nunc. Duis non neque ullamcorper, lacinia purus vitae,"
-                                                " condimentum augue. Curabitur massa metus, facilisis ac ipsum vel, mattis vehicula velit. "
-                                                "Aenean gravida, odio in imperdiet pharetra, metus nulla eleifend mauris, id cursus neque leo id magna. "
-                                                "Praesent pulvinar nunc urna, quis ultrices dui suscipit quis.", font=("Arial", 20), justify=LEFT)
-    lblInstruction.bind('<Configure>', lambda e: lblInstruction.config(wraplength=width * 0.95))
+    lblInstruction = Label(
+        frmInstruction,
+        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis sapien nisi,"
+        "a mollis turpis ullamcorper non. Duis in egestas nunc. Duis non neque ullamcorper, lacinia purus vitae,"
+        " condimentum augue. Curabitur massa metus, facilisis ac ipsum vel, mattis vehicula velit. "
+        "Aenean gravida, odio in imperdiet pharetra, metus nulla eleifend mauris, id cursus neque leo id magna. "
+        "Praesent pulvinar nunc urna, quis ultrices dui suscipit quis.",
+        font=("Arial", 20),
+        justify=LEFT,
+    )
+    lblInstruction.bind(
+        "<Configure>", lambda e: lblInstruction.config(wraplength=width * 0.95)
+    )
     lblInstruction.pack(fill=X, padx=10, pady=20)
 
-    btnBegin = ttk.Button(reinstrScreen, text="Begin", command=lambda: lvlChosen())
+    btnBegin = ttk.Button(
+        reinstrScreen, text="Begin", command=lambda: lvlChosen()
+    )
     btnBegin.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=E)
 
     reinstrScreen.mainloop()
+
+
 ######################
 
 ######################
-#Function for image processing
+# Function for image processing
 
 ######################
 
@@ -465,9 +560,7 @@ def level_one():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # Display the camera feed in the GUI
@@ -493,9 +586,9 @@ def level_one():  # Define self as global variable
         hands = mp_hands.Hands(
             static_image_mode=True,
             max_num_hands=1,
-            min_detection_confidence=0.8,
+            min_detection_confidence=0.7,
             model_complexity=1,
-            min_tracking_confidence=0.8,
+            min_tracking_confidence=0.7,
         )  # Initialize Hands
 
         output = hands.process(img_rgb)  # Results
@@ -535,13 +628,14 @@ def level_one():  # Define self as global variable
         curr = datetime.datetime.now()
 
         _, frame = cap.read()
-        frame=cv2.flip(frame,1)
-
+        frame = cv2.flip(frame, 1)
 
         data = image_processed(frame)
 
         # Will only get the detected letter only if hands are present in the frame.
-        if (output.multi_hand_landmarks):# Line checks if hands are present in the frame
+        if (
+            output.multi_hand_landmarks
+        ):  # Line checks if hands are present in the frame
             data = np.array(data)
             y_pred = svm.predict(data.reshape(-1, 63))
             print(y_pred)
@@ -576,7 +670,10 @@ def level_one():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score1
+
             ctr_level_one = 0
             arrlen = len(random_one)
             for i in range(arrlen):
@@ -584,7 +681,7 @@ def level_one():  # Define self as global variable
                     ctr_level_one = ctr_level_one + 1
 
             if ctr_level_one != 0:
-                score1=str(ctr_level_one) + "/" + str(arrlen)
+                score1 = str(ctr_level_one) + "/" + str(arrlen)
                 print(score1)
                 cv2.destroyAllWindows()
                 level_two()
@@ -597,10 +694,10 @@ def level_one():  # Define self as global variable
         if len(detected_letters1) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters1) == 0:
                     countdown = 5
                 else:
@@ -614,7 +711,13 @@ def level_one():  # Define self as global variable
                     print(detected_letters1)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -634,6 +737,8 @@ def level_one():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -692,9 +797,7 @@ def level_two():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
@@ -809,7 +912,10 @@ def level_two():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score2
+
             ctr_level_two = 0
             arrlen = len(random_two)
             for i in range(arrlen):
@@ -817,7 +923,7 @@ def level_two():  # Define self as global variable
                     ctr_level_two = ctr_level_two + 1
 
             if ctr_level_two != 0:
-                score2=str(ctr_level_two) + "/" + str(arrlen)
+                score2 = str(ctr_level_two) + "/" + str(arrlen)
                 print(score2)
                 cap.release()
                 cv2.destroyAllWindows()
@@ -831,10 +937,10 @@ def level_two():  # Define self as global variable
         if len(detected_letters2) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters2) == 0:
                     countdown = 5
                 else:
@@ -848,7 +954,13 @@ def level_two():  # Define self as global variable
                     print(detected_letters2)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -869,6 +981,8 @@ def level_two():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -927,9 +1041,7 @@ def level_three():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
@@ -1043,7 +1155,10 @@ def level_three():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score3
+
             ctr_level_three = 0
             arrlen = len(random_thr)
             for i in range(arrlen):
@@ -1051,7 +1166,7 @@ def level_three():  # Define self as global variable
                     ctr_level_three = ctr_level_three + 1
 
             if ctr_level_three != 0:
-                score3=str(ctr_level_three) + "/" + str(arrlen)
+                score3 = str(ctr_level_three) + "/" + str(arrlen)
                 print(score3)
                 cap.release()
                 cv2.destroyAllWindows()
@@ -1063,10 +1178,10 @@ def level_three():  # Define self as global variable
         if len(detected_letters3) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters3) == 0:
                     countdown = 5
                 else:
@@ -1080,7 +1195,13 @@ def level_three():  # Define self as global variable
                     print(detected_letters3)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -1101,6 +1222,8 @@ def level_three():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -1159,9 +1282,7 @@ def level_four():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
@@ -1275,7 +1396,10 @@ def level_four():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score4
+
             ctr_level_four = 0
             arrlen = len(random_fou)
             for i in range(arrlen):
@@ -1295,10 +1419,10 @@ def level_four():  # Define self as global variable
         if len(detected_letters4) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters4) == 0:
                     countdown = 5
                 else:
@@ -1312,7 +1436,13 @@ def level_four():  # Define self as global variable
                     print(detected_letters4)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -1333,6 +1463,8 @@ def level_four():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -1390,9 +1522,7 @@ def level_five():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
@@ -1506,7 +1636,10 @@ def level_five():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score5
+
             ctr_level_five = 0
             arrlen = len(random_five)
             for i in range(arrlen):
@@ -1526,10 +1659,10 @@ def level_five():  # Define self as global variable
         if len(detected_letters5) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters5) == 0:
                     countdown = 5
                 else:
@@ -1543,7 +1676,13 @@ def level_five():  # Define self as global variable
                     print(detected_letters5)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -1564,6 +1703,8 @@ def level_five():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -1622,9 +1763,7 @@ def level_six():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
@@ -1738,7 +1877,10 @@ def level_six():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score6
+
             ctr_level_six = 0
             arrlen = len(random_six)
             for i in range(arrlen):
@@ -1758,10 +1900,10 @@ def level_six():  # Define self as global variable
         if len(detected_letters6) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters6) == 0:
                     countdown = 5
                 else:
@@ -1775,7 +1917,13 @@ def level_six():  # Define self as global variable
                     print(detected_letters6)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -1796,6 +1944,8 @@ def level_six():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -1841,7 +1991,9 @@ def level_seven():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_seven)):
             letters = Label(
-                letter_frame, text=random_seven[i], font=("Courier", 33, "bold")
+                letter_frame,
+                text=random_seven[i],
+                font=("Courier", 33, "bold"),
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -1854,9 +2006,7 @@ def level_seven():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
@@ -1970,7 +2120,10 @@ def level_seven():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score7
+
             ctr_level_seven = 0
             arrlen = len(random_seven)
             for i in range(arrlen):
@@ -1990,10 +2143,10 @@ def level_seven():  # Define self as global variable
         if len(detected_letters7) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters7) == 0:
                     countdown = 5
                 else:
@@ -2007,7 +2160,13 @@ def level_seven():  # Define self as global variable
                     print(detected_letters7)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -2028,6 +2187,8 @@ def level_seven():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -2073,7 +2234,9 @@ def level_eight():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_eight)):
             letters = Label(
-                letter_frame, text=random_eight[i], font=("Courier", 21, "bold")
+                letter_frame,
+                text=random_eight[i],
+                font=("Courier", 21, "bold"),
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -2086,9 +2249,7 @@ def level_eight():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
@@ -2202,7 +2363,10 @@ def level_eight():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score8
+
             ctr_level_eight = 0
             arrlen = len(random_eight)
             for i in range(arrlen):
@@ -2222,10 +2386,10 @@ def level_eight():  # Define self as global variable
         if len(detected_letters8) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters8) == 0:
                     countdown = 5
                 else:
@@ -2239,7 +2403,13 @@ def level_eight():  # Define self as global variable
                     print(detected_letters8)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -2260,6 +2430,8 @@ def level_eight():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -2318,9 +2490,7 @@ def level_nine():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
@@ -2434,7 +2604,10 @@ def level_nine():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score9
+
             ctr_level_nine = 0
             arrlen = len(random_nine)
             for i in range(arrlen):
@@ -2454,10 +2627,10 @@ def level_nine():  # Define self as global variable
         if len(detected_letters9) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters9) == 0:
                     countdown = 5
                 else:
@@ -2471,7 +2644,13 @@ def level_nine():  # Define self as global variable
                     print(detected_letters9)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -2492,6 +2671,8 @@ def level_nine():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -2550,9 +2731,7 @@ def level_ten():  # Define self as global variable
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
-    cue_label = Label(
-        camera_frame, text=" ", font=CUE_FONT
-    )
+    cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
     cue_label.pack(side=LEFT, padx=30, pady=10)
 
     # # Function for image processing
@@ -2666,7 +2845,10 @@ def level_ten():  # Define self as global variable
             # For verfication and time
 
             # Verification Section
+
         def verify():
+            global score10
+
             ctr_level_ten = 0
             arrlen = len(random_ten)
             for i in range(arrlen):
@@ -2686,10 +2868,10 @@ def level_ten():  # Define self as global variable
         if len(detected_letters10) < 5:
 
             if output.multi_hand_landmarks:
-                #This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                #Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                #Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                #Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
+                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
+                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
+                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
+                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters10) == 0:
                     countdown = 5
                 else:
@@ -2703,7 +2885,13 @@ def level_ten():  # Define self as global variable
                     print(detected_letters10)
                     cv2.waitKey(3000)
                 else:
-                    cue_label.config(text="Hold the gesture. " + str(countdown - int((curr - start_time).total_seconds())))
+                    cue_label.config(
+                        text="Hold the gesture. "
+                        + str(
+                            countdown
+                            - int((curr - start_time).total_seconds())
+                        )
+                    )
             else:
                 cue_label.config(text="No hands detected.")
                 start_time = curr
@@ -2724,6 +2912,8 @@ def level_ten():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -2753,15 +2943,25 @@ def results():  # Define self as global variable
     resultsScreen.geometry("%dx%d+%d+%d" % (width, height, x, y))
     resultsScreen.overrideredirect(0)
 
-    lblTitle = Label(resultsScreen, text="VISUAL ACUITY ASSESSMENT RESULTS", font=("Arial Black", 40))
+    lblTitle = Label(
+        resultsScreen,
+        text="VISUAL ACUITY ASSESSMENT RESULTS",
+        font=("Arial Black", 40),
+    )
     lblTitle.pack(fill=X)
 
     frmLevel = Frame(resultsScreen, width=width, height=(height - 60))
-    frmLevel.pack(side=LEFT, pady=(20, 20), padx=(20, 10), fill=BOTH, expand=TRUE)
+    frmLevel.pack(
+        side=LEFT, pady=(20, 20), padx=(20, 10), fill=BOTH, expand=TRUE
+    )
     frmMeasurement = Frame(resultsScreen, width=width, height=(height - 60))
-    frmMeasurement.pack(side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE)
+    frmMeasurement.pack(
+        side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE
+    )
     frmScore = Frame(resultsScreen, width=width, height=(height - 60))
-    frmScore.pack(side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE)
+    frmScore.pack(
+        side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE
+    )
     frmBottom = Frame(resultsScreen, width=width, height=20)
     frmBottom.pack(side=BOTTOM, padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
 
@@ -2775,7 +2975,7 @@ def results():  # Define self as global variable
     lblLevel4.pack(fill=X)
     lblLevel5 = Label(frmLevel, text="Level 5", font=("Arial", 15, "bold"))
     lblLevel5.pack(fill=X)
-    lblLevel6= Label(frmLevel, text="Level 6", font=("Arial", 15, "bold"))
+    lblLevel6 = Label(frmLevel, text="Level 6", font=("Arial", 15, "bold"))
     lblLevel6.pack(fill=X)
     lblLevel7 = Label(frmLevel, text="Level 7", font=("Arial", 15, "bold"))
     lblLevel7.pack(fill=X)
@@ -2830,6 +3030,8 @@ def results():  # Define self as global variable
 
     btnFinish = ttk.Button(frmBottom, text="Finish", command=lambda: exit())
     btnFinish.pack(padx=10, pady=10, ipadx=30, ipady=10)
+
+
 ######################
 
 ######################
@@ -2873,6 +3075,8 @@ def main():
 
     # Run the main() function
     main.mainloop()
+
+
 ######################
 
 main()
