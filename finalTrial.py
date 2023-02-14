@@ -50,7 +50,7 @@ with open("model.pkl", "rb") as f:
     svm = pickle.load(f)
 
 # Constants
-CUE_FONT = ("Courier", 50)
+CUE_FONT = ("Courier", 30)
 
 
 ######################
@@ -500,11 +500,6 @@ def righteyeinstr():
 ######################
 
 ######################
-# Function for image processing
-
-######################
-
-######################
 def level_one():  # Define self as global variable
     global run_level_one
     global ctr_level_one
@@ -529,15 +524,19 @@ def level_one():  # Define self as global variable
     global start_time
     global finish
 
-    # Generate the random letters
+    label_frame = Frame(run_level_one, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                            "LEVEL 1 [20/70]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20,0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
         # Define self as a global variable
         global random_one
-
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_one, width=1920, height=840)
+        letter_frame = Frame(run_level_one, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -556,12 +555,12 @@ def level_one():  # Define self as global variable
 
     # Display the camera alongside the generated letters
     camera_frame = Frame(
-        run_level_one, width=camera_width, height=camera_height
+        run_level_one, width=1980, height=camera_height
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
-    cue_label.pack(side=LEFT, padx=30, pady=10)
+    cue_label.pack(side=LEFT, padx=30, pady=20)
 
     # Display the camera feed in the GUI
     cam_feed = Label(run_level_one)
@@ -688,8 +687,8 @@ def level_one():  # Define self as global variable
                 run_level_one.destroy()
             else:
                 cv2.destroyAllWindows()
-                run_level_one.destroy()
                 results()
+                run_level_one.destroy()
 
         if len(detected_letters1) < 5:
 
@@ -712,11 +711,12 @@ def level_one():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -729,6 +729,7 @@ def level_one():  # Define self as global variable
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
         imgtk = ImageTk.PhotoImage(image=img)
+        cv2.waitKey(10)
         cam_feed.configure(image=imgtk)
         cam_feed.after(10, camera_display)
 
@@ -767,6 +768,12 @@ def level_two():  # Define self as global variable
     global finish
 
     # Generate the random letters
+    label_frame = Frame(run_level_two, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                                          "LEVEL 2 [20/60]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -774,7 +781,7 @@ def level_two():  # Define self as global variable
         global random_two
 
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_two, width=1920, height=840)
+        letter_frame = Frame(run_level_two, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -793,12 +800,12 @@ def level_two():  # Define self as global variable
 
     # Display the camera alongside the generated letters
     camera_frame = Frame(
-        run_level_two, width=camera_width, height=camera_height
+        run_level_two, width=1980, height=camera_height
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
-    cue_label.pack(side=LEFT, padx=30, pady=10)
+    cue_label.pack(side=LEFT, padx=30, pady=20)
 
     # # Function for image processing
     def image_processed(hand_img):
@@ -925,14 +932,13 @@ def level_two():  # Define self as global variable
             if ctr_level_two != 0:
                 score2 = str(ctr_level_two) + "/" + str(arrlen)
                 print(score2)
-                cap.release()
                 cv2.destroyAllWindows()
-                run_level_two.withdraw()
                 level_three()
+                run_level_two.destroy()
             else:
                 cv2.destroyAllWindows()
-                run_level_two.destroy()
                 results()
+                run_level_two.destroy()
 
         if len(detected_letters2) < 5:
 
@@ -955,11 +961,12 @@ def level_two():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -1010,7 +1017,12 @@ def level_three():  # Define self as global variable
     global start_time
     global finish
 
-    # Generate the random letters
+    label_frame = Frame(run_level_three, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                                          "LEVEL 3 [20/50]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -1018,7 +1030,7 @@ def level_three():  # Define self as global variable
         global random_thr
 
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_three, width=1920, height=840)
+        letter_frame = Frame(run_level_three, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -1037,7 +1049,7 @@ def level_three():  # Define self as global variable
 
     # Display the camera alongside the generated letters
     camera_frame = Frame(
-        run_level_three, width=camera_width, height=camera_height
+        run_level_three, width=1980, height=camera_height
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
@@ -1168,12 +1180,13 @@ def level_three():  # Define self as global variable
             if ctr_level_three != 0:
                 score3 = str(ctr_level_three) + "/" + str(arrlen)
                 print(score3)
-                cap.release()
                 cv2.destroyAllWindows()
-                run_level_three.withdraw()
                 level_four()
+                run_level_three.destroy()
             else:
+                cv2.destroyAllWindows()
                 results()
+                run_level_three.destroy()
 
         if len(detected_letters3) < 5:
 
@@ -1196,11 +1209,12 @@ def level_three():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -1251,7 +1265,12 @@ def level_four():  # Define self as global variable
     global start_time
     global finish
 
-    # Generate the random letters
+    label_frame = Frame(run_level_four, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                                          "LEVEL 4 [20/40]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -1259,7 +1278,7 @@ def level_four():  # Define self as global variable
         global random_fou
 
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_four, width=1920, height=840)
+        letter_frame = Frame(run_level_four, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -1278,7 +1297,7 @@ def level_four():  # Define self as global variable
 
     # Display the camera alongside the generated letters
     camera_frame = Frame(
-        run_level_four, width=camera_width, height=camera_height
+        run_level_four, width=1920, height=camera_height
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
@@ -1409,12 +1428,13 @@ def level_four():  # Define self as global variable
             if ctr_level_four != 0:
                 score4 = str(ctr_level_four) + "/" + str(arrlen)
                 print(score4)
-                cap.release()
                 cv2.destroyAllWindows()
-                run_level_four.withdraw()
                 level_five()
+                run_level_four.destroy()
             else:
+                cv2.destroyAllWindows()
                 results()
+                run_level_four.destroy()
 
         if len(detected_letters4) < 5:
 
@@ -1437,11 +1457,12 @@ def level_four():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -1491,7 +1512,12 @@ def level_five():  # Define self as global variable
     global start_time
     global finish
 
-    # Generate the random letters
+    label_frame = Frame(run_level_five, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                                          "LEVEL 5 [20/30]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -1499,7 +1525,7 @@ def level_five():  # Define self as global variable
         global random_five
 
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_five, width=1920, height=840)
+        letter_frame = Frame(run_level_five, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -1518,7 +1544,7 @@ def level_five():  # Define self as global variable
 
     # Display the camera alongside the generated letters
     camera_frame = Frame(
-        run_level_five, width=camera_width, height=camera_height
+        run_level_five, width=1980, height=camera_height
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
@@ -1649,12 +1675,13 @@ def level_five():  # Define self as global variable
             if ctr_level_five != 0:
                 score5 = str(ctr_level_five) + "/" + str(arrlen)
                 print(score5)
-                cap.release()
                 cv2.destroyAllWindows()
-                run_level_five.withdraw()
                 level_six()
+                run_level_five.destroy()
             else:
+                cv2.destroyAllWindows()
                 results()
+                run_level_five.destroy()
 
         if len(detected_letters5) < 5:
 
@@ -1677,11 +1704,12 @@ def level_five():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -1732,7 +1760,12 @@ def level_six():  # Define self as global variable
     global start_time
     global finish
 
-    # Generate the random letters
+    label_frame = Frame(run_level_six, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                                          "LEVEL 6 [20/20]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -1740,7 +1773,7 @@ def level_six():  # Define self as global variable
         global random_six
 
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_six, width=1920, height=840)
+        letter_frame = Frame(run_level_six, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -1759,7 +1792,7 @@ def level_six():  # Define self as global variable
 
     # Display the camera alongside the generated letters
     camera_frame = Frame(
-        run_level_six, width=camera_width, height=camera_height
+        run_level_six, width=1920, height=camera_height
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
@@ -1890,12 +1923,14 @@ def level_six():  # Define self as global variable
             if ctr_level_six != 0:
                 score6 = str(ctr_level_six) + "/" + str(arrlen)
                 print(score6)
-                cap.release()
                 cv2.destroyAllWindows()
-                run_level_six.withdraw()
                 level_seven()
+                run_level_six.destroy()
+
             else:
+                cv2.destroyAllWindows()
                 results()
+                run_level_six.destroy()
 
         if len(detected_letters6) < 5:
 
@@ -1918,11 +1953,12 @@ def level_six():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -1973,7 +2009,12 @@ def level_seven():  # Define self as global variable
     global start_time
     global finish
 
-    # Generate the random letters
+    label_frame = Frame(run_level_seven, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                                          "LEVEL 7 [20/15]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -1981,7 +2022,7 @@ def level_seven():  # Define self as global variable
         global random_seven
 
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_seven, width=1920, height=840)
+        letter_frame = Frame(run_level_seven, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -2002,7 +2043,7 @@ def level_seven():  # Define self as global variable
 
     # Display the camera alongside the generated letters
     camera_frame = Frame(
-        run_level_seven, width=camera_width, height=camera_height
+        run_level_seven, width=1920, height=camera_height
     )
     camera_frame.pack(side=BOTTOM, fill=X)
 
@@ -2133,12 +2174,13 @@ def level_seven():  # Define self as global variable
             if ctr_level_seven != 0:
                 score7 = str(ctr_level_seven) + "/" + str(arrlen)
                 print(score7)
-                cap.release()
                 cv2.destroyAllWindows()
-                run_level_seven.withdraw()
                 level_eight()
+                run_level_seven.destroy()
             else:
+                cv2.destroyAllWindows()
                 results()
+                run_level_seven.destroy()
 
         if len(detected_letters7) < 5:
 
@@ -2161,11 +2203,12 @@ def level_seven():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -2216,7 +2259,12 @@ def level_eight():  # Define self as global variable
     global start_time
     global finish
 
-    # Generate the random letters
+    label_frame = Frame(run_level_eight, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                                          "LEVEL 8 [20/10]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -2224,7 +2272,7 @@ def level_eight():  # Define self as global variable
         global random_eight
 
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_eight, width=1920, height=840)
+        letter_frame = Frame(run_level_eight, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -2376,12 +2424,13 @@ def level_eight():  # Define self as global variable
             if ctr_level_eight != 0:
                 score8 = str(ctr_level_eight) + "/" + str(arrlen)
                 print(score8)
-                cap.release()
                 cv2.destroyAllWindows()
-                run_level_eight.withdraw()
                 level_nine()
+                run_level_eight.destroy()
             else:
+                cv2.destroyAllWindows()
                 results()
+                run_level_eight.destroy()
 
         if len(detected_letters8) < 5:
 
@@ -2404,11 +2453,12 @@ def level_eight():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -2459,7 +2509,12 @@ def level_nine():  # Define self as global variable
     global start_time
     global finish
 
-    # Generate the random letters
+    label_frame = Frame(run_level_nine, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                                          "LEVEL 9 [20/7]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -2467,7 +2522,7 @@ def level_nine():  # Define self as global variable
         global random_nine
 
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_nine, width=1920, height=840)
+        letter_frame = Frame(run_level_nine, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -2617,12 +2672,13 @@ def level_nine():  # Define self as global variable
             if ctr_level_nine != 0:
                 score9 = str(ctr_level_nine) + "/" + str(arrlen)
                 print(score9)
-                cap.release()
                 cv2.destroyAllWindows()
-                run_level_nine.withdraw()
                 level_ten()
+                run_level_nine.destroy()
             else:
+                cv2.destroyAllWindows()
                 results()
+                run_level_nine.destroy()
 
         if len(detected_letters9) < 5:
 
@@ -2645,11 +2701,12 @@ def level_nine():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -2700,7 +2757,12 @@ def level_ten():  # Define self as global variable
     global start_time
     global finish
 
-    # Generate the random letters
+    label_frame = Frame(run_level_ten, width=1920, height=50)
+    label_frame.pack(fill=X)
+
+    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
+                                          "LEVEL 10 [20/4]", font=("Courier", 30), justify=LEFT)
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -2708,7 +2770,7 @@ def level_ten():  # Define self as global variable
         global random_ten
 
         # Create a frame for the letter generated
-        letter_frame = Frame(run_level_ten, width=1920, height=840)
+        letter_frame = Frame(run_level_ten, width=1920, height=670)
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
@@ -2858,12 +2920,13 @@ def level_ten():  # Define self as global variable
             if ctr_level_ten != 0:
                 score10 = str(ctr_level_ten) + "/" + str(arrlen)
                 print(score10)
-                cap.release()
                 cv2.destroyAllWindows()
-                run_level_ten.withdraw()
                 results()
+                run_level_ten.destroy()
             else:
+                cv2.destroyAllWindows()
                 results()
+                run_level_ten.destroy()
 
         if len(detected_letters10) < 5:
 
@@ -2886,11 +2949,12 @@ def level_ten():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture. "
-                        + str(
+                        text="Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
+                             + " second/s."
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -2912,8 +2976,6 @@ def level_ten():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
-
-
 ######################
 
 ######################
