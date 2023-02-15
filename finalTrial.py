@@ -1,13 +1,14 @@
 import datetime
+import os
 import pickle
 import random
 from tkinter import *
 from tkinter import ttk
+
 import cv2
 import mediapipe as mp
 import numpy as np
 from PIL import Image, ImageTk
-import os
 
 # Globally accessible variables
 detected_letters1 = []
@@ -522,9 +523,13 @@ def level_one():  # Define self as global variable
     label_frame = Frame(run_level_one, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                            "LEVEL 1 [20/70]", font=("Courier", 30), justify=LEFT)
-    level_indic.pack(side=LEFT, padx=(20,0), pady=20)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 1 [20/70]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
+    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -549,9 +554,7 @@ def level_one():  # Define self as global variable
     print_letters()
 
     # Display the camera alongside the generated letters
-    camera_frame = Frame(
-        run_level_one, width=1980, height=camera_height
-    )
+    camera_frame = Frame(run_level_one, width=1980, height=camera_height)
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
@@ -683,11 +686,12 @@ def level_one():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters1)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -757,8 +761,12 @@ def level_two():  # Define self as global variable
     label_frame = Frame(run_level_two, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                                          "LEVEL 2 [20/60]", font=("Courier", 30), justify=LEFT)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 2 [20/60]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
@@ -785,9 +793,7 @@ def level_two():  # Define self as global variable
     print_letters()
 
     # Display the camera alongside the generated letters
-    camera_frame = Frame(
-        run_level_two, width=1980, height=camera_height
-    )
+    camera_frame = Frame(run_level_two, width=1980, height=camera_height)
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
@@ -947,11 +953,12 @@ def level_two():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters2)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -992,7 +999,9 @@ def level_three():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_three.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_three.geometry(
+        "%dx%d+%d+%d" % (screen_width, screen_height, 0, 0)
+    )
     run_level_three.overrideredirect(1)
 
     global start_time
@@ -1001,8 +1010,12 @@ def level_three():  # Define self as global variable
     label_frame = Frame(run_level_three, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                                          "LEVEL 3 [20/50]", font=("Courier", 30), justify=LEFT)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 3 [20/50]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
@@ -1029,9 +1042,7 @@ def level_three():  # Define self as global variable
     print_letters()
 
     # Display the camera alongside the generated letters
-    camera_frame = Frame(
-        run_level_three, width=1980, height=camera_height
-    )
+    camera_frame = Frame(run_level_three, width=1980, height=camera_height)
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
@@ -1190,11 +1201,12 @@ def level_three():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters3)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -1235,7 +1247,9 @@ def level_four():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_four.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_four.geometry(
+        "%dx%d+%d+%d" % (screen_width, screen_height, 0, 0)
+    )
     run_level_four.overrideredirect(1)
 
     global start_time
@@ -1244,8 +1258,12 @@ def level_four():  # Define self as global variable
     label_frame = Frame(run_level_four, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                                          "LEVEL 4 [20/40]", font=("Courier", 30), justify=LEFT)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 4 [20/40]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
@@ -1272,9 +1290,7 @@ def level_four():  # Define self as global variable
     print_letters()
 
     # Display the camera alongside the generated letters
-    camera_frame = Frame(
-        run_level_four, width=1920, height=camera_height
-    )
+    camera_frame = Frame(run_level_four, width=1920, height=camera_height)
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
@@ -1433,11 +1449,12 @@ def level_four():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters4)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -1478,7 +1495,9 @@ def level_five():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_five.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_five.geometry(
+        "%dx%d+%d+%d" % (screen_width, screen_height, 0, 0)
+    )
     run_level_five.overrideredirect(1)
 
     global start_time
@@ -1487,8 +1506,12 @@ def level_five():  # Define self as global variable
     label_frame = Frame(run_level_five, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                                          "LEVEL 5 [20/30]", font=("Courier", 30), justify=LEFT)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 5 [20/30]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
@@ -1515,9 +1538,7 @@ def level_five():  # Define self as global variable
     print_letters()
 
     # Display the camera alongside the generated letters
-    camera_frame = Frame(
-        run_level_five, width=1980, height=camera_height
-    )
+    camera_frame = Frame(run_level_five, width=1980, height=camera_height)
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
@@ -1676,11 +1697,12 @@ def level_five():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters5)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -1730,8 +1752,12 @@ def level_six():  # Define self as global variable
     label_frame = Frame(run_level_six, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                                          "LEVEL 6 [20/20]", font=("Courier", 30), justify=LEFT)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 6 [20/20]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
@@ -1758,9 +1784,7 @@ def level_six():  # Define self as global variable
     print_letters()
 
     # Display the camera alongside the generated letters
-    camera_frame = Frame(
-        run_level_six, width=1920, height=camera_height
-    )
+    camera_frame = Frame(run_level_six, width=1920, height=camera_height)
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
@@ -1920,11 +1944,12 @@ def level_six():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters6)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -1965,7 +1990,9 @@ def level_seven():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_seven.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_seven.geometry(
+        "%dx%d+%d+%d" % (screen_width, screen_height, 0, 0)
+    )
     run_level_seven.overrideredirect(1)
 
     global start_time
@@ -1974,8 +2001,12 @@ def level_seven():  # Define self as global variable
     label_frame = Frame(run_level_seven, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                                          "LEVEL 7 [20/15]", font=("Courier", 30), justify=LEFT)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 7 [20/15]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
@@ -2004,9 +2035,7 @@ def level_seven():  # Define self as global variable
     print_letters()
 
     # Display the camera alongside the generated letters
-    camera_frame = Frame(
-        run_level_seven, width=1920, height=camera_height
-    )
+    camera_frame = Frame(run_level_seven, width=1920, height=camera_height)
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
@@ -2165,11 +2194,12 @@ def level_seven():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters7)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -2210,7 +2240,9 @@ def level_eight():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_eight.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_eight.geometry(
+        "%dx%d+%d+%d" % (screen_width, screen_height, 0, 0)
+    )
     run_level_eight.overrideredirect(1)
 
     global start_time
@@ -2219,8 +2251,12 @@ def level_eight():  # Define self as global variable
     label_frame = Frame(run_level_eight, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                                          "LEVEL 8 [20/10]", font=("Courier", 30), justify=LEFT)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 8 [20/10]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
@@ -2410,11 +2446,12 @@ def level_eight():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters8)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -2455,7 +2492,9 @@ def level_nine():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_nine.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_nine.geometry(
+        "%dx%d+%d+%d" % (screen_width, screen_height, 0, 0)
+    )
     run_level_nine.overrideredirect(1)
 
     global start_time
@@ -2464,8 +2503,12 @@ def level_nine():  # Define self as global variable
     label_frame = Frame(run_level_nine, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                                          "LEVEL 9 [20/7]", font=("Courier", 30), justify=LEFT)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 9 [20/7]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
@@ -2653,11 +2696,12 @@ def level_nine():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters9)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -2707,8 +2751,12 @@ def level_ten():  # Define self as global variable
     label_frame = Frame(run_level_ten, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(label_frame, text="Visual Acuity Assessment Exam\n"
-                                          "LEVEL 10 [20/4]", font=("Courier", 30), justify=LEFT)
+    level_indic = Label(
+        label_frame,
+        text="Visual Acuity Assessment Exam\n" "LEVEL 10 [20/4]",
+        font=("Courier", 30),
+        justify=LEFT,
+    )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
 
     # Print the generated letters on the screen
@@ -2896,11 +2944,12 @@ def level_ten():  # Define self as global variable
                 else:
                     cue_label.config(
                         text="Hold the gesture for "
-                             + str(
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
+                        + str(detected_letters10)
                     )
             else:
                 cue_label.config(text="No hands detected.")
@@ -2922,6 +2971,8 @@ def level_ten():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+
 ######################
 
 ######################
@@ -3048,6 +3099,7 @@ def startOver():
     main.destroy()
     os.system("python finalTrial.py")
 
+
 ######################
 
 ######################
@@ -3091,8 +3143,6 @@ def main():
 
     # Run the main() function
     main.mainloop()
-
-
 
 
 ######################
