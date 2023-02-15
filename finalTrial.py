@@ -1,17 +1,13 @@
 import datetime
 import pickle
 import random
-import string
-import threading
-import time
-from threading import Timer
 from tkinter import *
 from tkinter import ttk
-
 import cv2
 import mediapipe as mp
 import numpy as np
 from PIL import Image, ImageTk
+import os
 
 # Globally accessible variables
 detected_letters1 = []
@@ -39,7 +35,6 @@ score10 = "---"
 camera_width = 320
 camera_height = 240
 
-
 # Initialize MediaPipe
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
@@ -52,6 +47,10 @@ with open("model.pkl", "rb") as f:
 # Constants
 CUE_FONT = ("Courier", 30)
 
+# Start the camera
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
 
 ######################
 def gen_ran_letters():
@@ -504,10 +503,6 @@ def level_one():  # Define self as global variable
     global run_level_one
     global ctr_level_one
 
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-
     # Create a frame for the current level
     run_level_one = Toplevel(main)
 
@@ -518,8 +513,8 @@ def level_one():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_one.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_one.overrideredirect(0)
+    run_level_one.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_one.overrideredirect(1)
 
     global start_time
     global finish
@@ -666,30 +661,6 @@ def level_one():  # Define self as global variable
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            # For verfication and time
-
-            # Verification Section
-
-        def verify():
-            global score1
-
-            ctr_level_one = 0
-            arrlen = len(random_one)
-            for i in range(arrlen):
-                if detected_letters1[i] == random_one[i]:
-                    ctr_level_one = ctr_level_one + 1
-
-            if ctr_level_one != 0:
-                score1 = str(ctr_level_one) + "/" + str(arrlen)
-                print(score1)
-                cv2.destroyAllWindows()
-                level_two()
-                run_level_one.destroy()
-            else:
-                cv2.destroyAllWindows()
-                results()
-                run_level_one.destroy()
-
         if len(detected_letters1) < 5:
 
             if output.multi_hand_landmarks:
@@ -739,6 +710,25 @@ def level_one():  # Define self as global variable
 
     camera_display()
 
+    def verify():
+        global score1
+
+        ctr_level_one = 0
+        arrlen = len(random_one)
+        for i in range(arrlen):
+            if detected_letters1[i] == random_one[i]:
+                ctr_level_one = ctr_level_one + 1
+
+        if ctr_level_one != 0:
+            score1 = str(ctr_level_one) + "/" + str(arrlen)
+            print(score1)
+            level_two()
+            run_level_one.destroy()
+        else:
+            cv2.destroyAllWindows()
+            results()
+            run_level_one.destroy()
+
 
 ######################
 
@@ -746,10 +736,6 @@ def level_one():  # Define self as global variable
 def level_two():  # Define self as global variable
     global run_level_two
     global ctr_level_two
-
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
 
     # Create a frame for the current level
     run_level_two = Toplevel(main)
@@ -761,8 +747,8 @@ def level_two():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_two.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_two.overrideredirect(0)
+    run_level_two.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_two.overrideredirect(1)
 
     global start_time
     global finish
@@ -932,7 +918,6 @@ def level_two():  # Define self as global variable
             if ctr_level_two != 0:
                 score2 = str(ctr_level_two) + "/" + str(arrlen)
                 print(score2)
-                cv2.destroyAllWindows()
                 level_three()
                 run_level_two.destroy()
             else:
@@ -997,10 +982,6 @@ def level_three():  # Define self as global variable
     global run_level_three
     global ctr_level_three
 
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-
     # Create a frame for the current level
     run_level_three = Toplevel(main)
 
@@ -1011,8 +992,8 @@ def level_three():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_three.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_three.overrideredirect(0)
+    run_level_three.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_three.overrideredirect(1)
 
     global start_time
     global finish
@@ -1180,7 +1161,6 @@ def level_three():  # Define self as global variable
             if ctr_level_three != 0:
                 score3 = str(ctr_level_three) + "/" + str(arrlen)
                 print(score3)
-                cv2.destroyAllWindows()
                 level_four()
                 run_level_three.destroy()
             else:
@@ -1245,10 +1225,6 @@ def level_four():  # Define self as global variable
     global run_level_four
     global ctr_level_four
 
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-
     # Create a frame for the current level
     run_level_four = Toplevel(main)
 
@@ -1259,8 +1235,8 @@ def level_four():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_four.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_four.overrideredirect(0)
+    run_level_four.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_four.overrideredirect(1)
 
     global start_time
     global finish
@@ -1428,7 +1404,6 @@ def level_four():  # Define self as global variable
             if ctr_level_four != 0:
                 score4 = str(ctr_level_four) + "/" + str(arrlen)
                 print(score4)
-                cv2.destroyAllWindows()
                 level_five()
                 run_level_four.destroy()
             else:
@@ -1493,9 +1468,6 @@ def level_five():  # Define self as global variable
     global run_level_five
     global ctr_level_five
 
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
     # Create a frame for the current level
     run_level_five = Toplevel(main)
 
@@ -1506,8 +1478,8 @@ def level_five():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_five.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_five.overrideredirect(0)
+    run_level_five.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_five.overrideredirect(1)
 
     global start_time
     global finish
@@ -1675,7 +1647,6 @@ def level_five():  # Define self as global variable
             if ctr_level_five != 0:
                 score5 = str(ctr_level_five) + "/" + str(arrlen)
                 print(score5)
-                cv2.destroyAllWindows()
                 level_six()
                 run_level_five.destroy()
             else:
@@ -1740,10 +1711,6 @@ def level_six():  # Define self as global variable
     global run_level_six
     global ctr_level_six
 
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-
     # Create a frame for the current level
     run_level_six = Toplevel(main)
 
@@ -1754,8 +1721,8 @@ def level_six():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_six.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_six.overrideredirect(0)
+    run_level_six.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_six.overrideredirect(1)
 
     global start_time
     global finish
@@ -1923,7 +1890,6 @@ def level_six():  # Define self as global variable
             if ctr_level_six != 0:
                 score6 = str(ctr_level_six) + "/" + str(arrlen)
                 print(score6)
-                cv2.destroyAllWindows()
                 level_seven()
                 run_level_six.destroy()
 
@@ -1989,10 +1955,6 @@ def level_seven():  # Define self as global variable
     global run_level_seven
     global ctr_level_seven
 
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-
     # Create a frame for the current level
     run_level_seven = Toplevel(main)
 
@@ -2003,8 +1965,8 @@ def level_seven():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_seven.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_seven.overrideredirect(0)
+    run_level_seven.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_seven.overrideredirect(1)
 
     global start_time
     global finish
@@ -2174,7 +2136,6 @@ def level_seven():  # Define self as global variable
             if ctr_level_seven != 0:
                 score7 = str(ctr_level_seven) + "/" + str(arrlen)
                 print(score7)
-                cv2.destroyAllWindows()
                 level_eight()
                 run_level_seven.destroy()
             else:
@@ -2239,10 +2200,6 @@ def level_eight():  # Define self as global variable
     global run_level_eight
     global ctr_level_eight
 
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-
     # Create a frame for the current level
     run_level_eight = Toplevel(main)
 
@@ -2253,8 +2210,8 @@ def level_eight():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_eight.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_eight.overrideredirect(0)
+    run_level_eight.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_eight.overrideredirect(1)
 
     global start_time
     global finish
@@ -2424,7 +2381,6 @@ def level_eight():  # Define self as global variable
             if ctr_level_eight != 0:
                 score8 = str(ctr_level_eight) + "/" + str(arrlen)
                 print(score8)
-                cv2.destroyAllWindows()
                 level_nine()
                 run_level_eight.destroy()
             else:
@@ -2489,10 +2445,6 @@ def level_nine():  # Define self as global variable
     global run_level_nine
     global ctr_level_nine
 
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-
     # Create a frame for the current level
     run_level_nine = Toplevel(main)
 
@@ -2503,8 +2455,8 @@ def level_nine():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_nine.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_nine.overrideredirect(0)
+    run_level_nine.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_nine.overrideredirect(1)
 
     global start_time
     global finish
@@ -2672,7 +2624,6 @@ def level_nine():  # Define self as global variable
             if ctr_level_nine != 0:
                 score9 = str(ctr_level_nine) + "/" + str(arrlen)
                 print(score9)
-                cv2.destroyAllWindows()
                 level_ten()
                 run_level_nine.destroy()
             else:
@@ -2737,10 +2688,6 @@ def level_ten():  # Define self as global variable
     global run_level_ten
     global ctr_level_ten
 
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
-
     # Create a frame for the current level
     run_level_ten = Toplevel(main)
 
@@ -2751,8 +2698,8 @@ def level_ten():  # Define self as global variable
     height = screen_height * 0.7
     x = (screen_width / 2) - (width / 2)
     y = (screen_height / 2) - (height / 2)
-    run_level_ten.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    run_level_ten.overrideredirect(0)
+    run_level_ten.geometry("%dx%d+%d+%d" % (screen_width, screen_height, 0, 0))
+    run_level_ten.overrideredirect(1)
 
     global start_time
     global finish
@@ -2920,7 +2867,6 @@ def level_ten():  # Define self as global variable
             if ctr_level_ten != 0:
                 score10 = str(ctr_level_ten) + "/" + str(arrlen)
                 print(score10)
-                cv2.destroyAllWindows()
                 results()
                 run_level_ten.destroy()
             else:
@@ -3097,6 +3043,14 @@ def results():  # Define self as global variable
 ######################
 
 ######################
+def startOver():
+    resultsScreen.destroy()
+    main.destroy()
+    os.system("python finalTrial.py")
+
+######################
+
+######################
 def main():
     # Define self as global variable
     global main
@@ -3137,6 +3091,8 @@ def main():
 
     # Run the main() function
     main.mainloop()
+
+
 
 
 ######################
