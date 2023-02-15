@@ -694,7 +694,9 @@ def level_one():  # Define self as global variable
                         + str(detected_letters1)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters1)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -961,7 +963,9 @@ def level_two():  # Define self as global variable
                         + str(detected_letters2)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters2)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -1209,7 +1213,9 @@ def level_three():  # Define self as global variable
                         + str(detected_letters3)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters3)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -1457,7 +1463,9 @@ def level_four():  # Define self as global variable
                         + str(detected_letters4)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters4)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -1705,7 +1713,9 @@ def level_five():  # Define self as global variable
                         + str(detected_letters5)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters5)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -1952,7 +1962,9 @@ def level_six():  # Define self as global variable
                         + str(detected_letters6)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters6)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -2202,7 +2214,9 @@ def level_seven():  # Define self as global variable
                         + str(detected_letters7)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters7)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -2454,7 +2468,9 @@ def level_eight():  # Define self as global variable
                         + str(detected_letters8)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters8)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -2704,7 +2720,9 @@ def level_nine():  # Define self as global variable
                         + str(detected_letters9)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters9)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -2952,7 +2970,9 @@ def level_ten():  # Define self as global variable
                         + str(detected_letters10)
                     )
             else:
-                cue_label.config(text="No hands detected.")
+                cue_label.config(
+                    text="No hands detected." + str(detected_letters10)
+                )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
@@ -3087,7 +3107,9 @@ def results():  # Define self as global variable
     lblResult10 = Label(frmScore, text=score10, font=("Arial", 15, "bold"))
     lblResult10.pack(fill=X)
 
-    btnFinish = ttk.Button(frmBottom, text="Finish", command=lambda: startOver())
+    btnFinish = ttk.Button(
+        frmBottom, text="Finish", command=lambda: startOver()
+    )
     btnFinish.pack(padx=10, pady=10, ipadx=30, ipady=10)
 
 
