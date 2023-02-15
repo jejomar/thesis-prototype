@@ -3087,7 +3087,7 @@ def results():  # Define self as global variable
     lblResult10 = Label(frmScore, text=score10, font=("Arial", 15, "bold"))
     lblResult10.pack(fill=X)
 
-    btnFinish = ttk.Button(frmBottom, text="Finish", command=lambda: exit())
+    btnFinish = ttk.Button(frmBottom, text="Finish", command=lambda: startOver())
     btnFinish.pack(padx=10, pady=10, ipadx=30, ipady=10)
 
 
@@ -3095,6 +3095,8 @@ def results():  # Define self as global variable
 
 ######################
 def startOver():
+    cap.release()
+    cv2.destroyAllWindows()
     resultsScreen.destroy()
     main.destroy()
     os.system("python finalTrial.py")
