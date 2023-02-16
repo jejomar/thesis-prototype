@@ -419,12 +419,11 @@ def lefteyeinstr():
 
     lblInstruction = Label(
         frmInstruction,
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis sapien nisi,"
-        "a mollis turpis ullamcorper non. Duis in egestas nunc. Duis non neque ullamcorper, lacinia purus vitae,"
-        " condimentum augue. Curabitur massa metus, facilisis ac ipsum vel, mattis vehicula velit. "
-        "Aenean gravida, odio in imperdiet pharetra, metus nulla eleifend mauris, id cursus neque leo id magna. "
-        "Praesent pulvinar nunc urna, quis ultrices dui suscipit quis.",
-        font=("Arial", 20),
+        text="1. Stand in front of the camera, with your hand centered in the camera frame.\n\n"
+        "2. Hold the gesture of the first letter for 5 seconds, and 8 seconds for the remaining.\n\n"
+        "3. When the timer reaches 1 second, prepare the gesture for the next letter.\n\n"
+        "4. Once done, repeat steps 2 and 3 until all letters are done.\n\n",
+        font=("Arial", 24),
         justify=LEFT,
     )
     lblInstruction.bind(
@@ -476,12 +475,11 @@ def righteyeinstr():
 
     lblInstruction = Label(
         frmInstruction,
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis sapien nisi,"
-        "a mollis turpis ullamcorper non. Duis in egestas nunc. Duis non neque ullamcorper, lacinia purus vitae,"
-        " condimentum augue. Curabitur massa metus, facilisis ac ipsum vel, mattis vehicula velit. "
-        "Aenean gravida, odio in imperdiet pharetra, metus nulla eleifend mauris, id cursus neque leo id magna. "
-        "Praesent pulvinar nunc urna, quis ultrices dui suscipit quis.",
-        font=("Arial", 20),
+        text="\n\n\n1. Stand in front of the camera, with your hand centered in the camera frame.\n\n\n"
+        "2. Hold the gesture of the first letter for 5 seconds, and 8 seconds for the remaining.\n\n\n"
+        "3. When the timer reaches 1 second, prepare the gesture for the next letter.\n\n\n"
+        "4. Once done, repeat steps 2 and 3 until all letters are done.\n\n\n",
+        font=("Arial", 24),
         justify=LEFT,
     )
     lblInstruction.bind(
