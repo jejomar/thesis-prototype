@@ -419,10 +419,10 @@ def lefteyeinstr():
 
     lblInstruction = Label(
         frmInstruction,
-        text="1. Stand in front of the camera, with your hand centered in the camera frame.\n\n"
-        "2. Hold the gesture of the first letter for 5 seconds, and 8 seconds for the remaining.\n\n"
-        "3. When the timer reaches 1 second, prepare the gesture for the next letter.\n\n"
-        "4. Once done, repeat steps 2 and 3 until all letters are done.\n\n",
+        text="\n\n\n1. Stand in front of the camera, with your hand centered in the camera frame.\n\n\n"
+        "2. Hold the gesture of the first letter for 5 seconds, and 8 seconds for the remaining.\n\n\n"
+        "3. When the timer reaches 1 second, prepare the gesture for the next letter.\n\n\n"
+        "4. Once done, repeat steps 2 and 3 until all letters are done.\n",
         font=("Arial", 24),
         justify=LEFT,
     )
@@ -478,7 +478,7 @@ def righteyeinstr():
         text="\n\n\n1. Stand in front of the camera, with your hand centered in the camera frame.\n\n\n"
         "2. Hold the gesture of the first letter for 5 seconds, and 8 seconds for the remaining.\n\n\n"
         "3. When the timer reaches 1 second, prepare the gesture for the next letter.\n\n\n"
-        "4. Once done, repeat steps 2 and 3 until all letters are done.\n\n\n",
+        "4. Once done, repeat steps 2 and 3 until all letters are done.\n",
         font=("Arial", 24),
         justify=LEFT,
     )
