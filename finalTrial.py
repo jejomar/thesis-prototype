@@ -4,6 +4,7 @@ import pickle
 import random
 from tkinter import *
 from tkinter import ttk
+
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -319,11 +320,15 @@ def levelselect():
     )
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
     lblTitle = Label(
-        levselScreen, text="— LEVEL SELECT —", font=("Montserrat ExtraBold", 40)
+        levselScreen,
+        text="— LEVEL SELECT —",
+        font=("Montserrat ExtraBold", 40),
     )
     lblTitle.pack(fill=X)
     lblInstr = Label(
-        levselScreen, text="Select the level to start the assessment.", font=("Montserrat", 15)
+        levselScreen,
+        text="Select the level to start the assessment.",
+        font=("Montserrat", 15),
     )
     lblInstr.pack(fill=X)
 
@@ -342,7 +347,6 @@ def levelselect():
     eig = PhotoImage(file=r"Buttons\20_10.png")
     nin = PhotoImage(file=r"Buttons\20_7.png")
     ten = PhotoImage(file=r"Buttons\20_4.png")
-
 
     btnLevel1 = ttk.Button(
         frmTop, text="Level 1", image=one, command=lambda: eyetest("one")
@@ -426,7 +430,9 @@ def eyetest(level):
     )
     lblTitle.pack(fill=X)
     lblInstr = Label(
-        eyeScreen, text="Select which eye will be tested.", font=("Montserrat", 15)
+        eyeScreen,
+        text="Select which eye will be tested.",
+        font=("Montserrat", 15),
     )
     lblInstr.pack(fill=X)
 
@@ -499,11 +505,13 @@ def lefteyeinstr():
     lblTitle = Label(
         leinstrScreen,
         text="— INSTRUCTIONS —",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblTitle.pack(fill=X)
     lblInstr = Label(
-        leinstrScreen, text="Please read the following.", font=("Montserrat", 15)
+        leinstrScreen,
+        text="Please read the following.",
+        font=("Montserrat", 15),
     )
     lblInstr.pack(fill=X)
 
@@ -513,18 +521,18 @@ def lefteyeinstr():
     lblInstruction = Label(
         frmInstruction,
         text="1. Kindly keep your right eye covered throughout the exam.\n\n"
-             "2. Raise only one hand and make sure it's centered in the camera frame.\n\n"
-             "3. Read and perform the gestures of the displayed letters one at a time every 5 seconds"
-             " and hold the gesture within the given time interval.\n\n"
-             "4. As the timer reaches 1 second, prepare for the next letter.\n\n"
-             "5. Once done, repeat steps 1 and 4 until all letters are done.",
+        "2. Raise only one hand and make sure it's centered in the camera frame.\n\n"
+        "3. Read and perform the gestures of the displayed letters one at a time every 5 seconds"
+        " and hold the gesture within the given time interval.\n\n"
+        "4. As the timer reaches 1 second, prepare for the next letter.\n\n"
+        "5. Once done, repeat steps 1 and 4 until all letters are done.",
         font=("Montserrat SemiBold", 24),
         justify=LEFT,
     )
     lblInstruction.bind(
         "<Configure>", lambda e: lblInstruction.config(wraplength=width * 0.95)
     )
-    lblInstruction.pack(fill=X, padx=10, pady=(30,20))
+    lblInstruction.pack(fill=X, padx=10, pady=(30, 20))
 
     btnBegin = ttk.Button(
         leinstrScreen, text="Begin", command=lambda: lvlChosen()
@@ -563,11 +571,13 @@ def righteyeinstr():
     lblTitle = Label(
         reinstrScreen,
         text="— INSTRUCTIONS —",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblTitle.pack(fill=X)
     lblInstr = Label(
-        reinstrScreen, text="Please read the following.", font=("Montserrat", 15)
+        reinstrScreen,
+        text="Please read the following.",
+        font=("Montserrat", 15),
     )
     lblInstr.pack(fill=X)
 
@@ -577,18 +587,18 @@ def righteyeinstr():
     lblInstruction = Label(
         frmInstruction,
         text="1. Kindly keep your left eye covered throughout the exam.\n\n"
-             "2. Raise only one hand and make sure it's centered in the camera frame.\n\n"
-             "3. Read and perform the gestures of the displayed letters one at a time every 5 seconds"
-             " and hold the gesture within the given time interval.\n\n"
-             "4. As the timer reaches 1 second, prepare for the next letter.\n\n"
-             "5. Once done, repeat steps 1 and 4 until all letters are done.",
+        "2. Raise only one hand and make sure it's centered in the camera frame.\n\n"
+        "3. Read and perform the gestures of the displayed letters one at a time every 5 seconds"
+        " and hold the gesture within the given time interval.\n\n"
+        "4. As the timer reaches 1 second, prepare for the next letter.\n\n"
+        "5. Once done, repeat steps 1 and 4 until all letters are done.",
         font=("Montserrat SemiBold", 24),
         justify=LEFT,
     )
     lblInstruction.bind(
         "<Configure>", lambda e: lblInstruction.config(wraplength=width * 0.95)
     )
-    lblInstruction.pack(fill=X, padx=10, pady=(30,20))
+    lblInstruction.pack(fill=X, padx=10, pady=(30, 20))
 
     btnBegin = ttk.Button(
         reinstrScreen, text="Begin", command=lambda: lvlChosen()
@@ -627,11 +637,13 @@ def botheyeinstr():
     lblTitle = Label(
         beinstrScreen,
         text="— INSTRUCTIONS —",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblTitle.pack(fill=X)
     lblInstr = Label(
-        beinstrScreen, text="Please read the following.", font=("Montserrat", 15)
+        beinstrScreen,
+        text="Please read the following.",
+        font=("Montserrat", 15),
     )
     lblInstr.pack(fill=X)
 
@@ -641,17 +653,17 @@ def botheyeinstr():
     lblInstruction = Label(
         frmInstruction,
         text="1. Raise only one hand and make sure it's centered in the camera frame.\n\n"
-             "2. Read and perform the gestures of the displayed letters one at a time every 5 seconds"
-             " and hold the gesture within the given time interval.\n\n"
-             "3. As the timer reaches 1 second, prepare for the next letter.\n\n"
-             "4. Once done, repeat steps 1 and 3 until all letters are done.",
+        "2. Read and perform the gestures of the displayed letters one at a time every 5 seconds"
+        " and hold the gesture within the given time interval.\n\n"
+        "3. As the timer reaches 1 second, prepare for the next letter.\n\n"
+        "4. Once done, repeat steps 1 and 3 until all letters are done.",
         font=("Montserrat SemiBold", 24),
         justify=LEFT,
     )
     lblInstruction.bind(
         "<Configure>", lambda e: lblInstruction.config(wraplength=width * 0.95)
     )
-    lblInstruction.pack(fill=X, padx=10,pady=(30,20))
+    lblInstruction.pack(fill=X, padx=10, pady=(30, 20))
 
     btnBegin = ttk.Button(
         beinstrScreen, text="Begin", command=lambda: lvlChosen()
@@ -690,15 +702,15 @@ def level_one():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
-    lblLevel.pack(side=LEFT,padx=(20, 0), pady=10, anchor=W)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
         text="Level 1 — 20 / 70",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
-    lblIndic.pack(side=RIGHT,padx=(0, 20), pady=10, anchor=W)
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -854,7 +866,8 @@ def level_one():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters1) + " | Hold the gesture for "
+                        text=str(detected_letters1)
+                        + " | Hold the gesture for "
                         + str(
                             countdown
                             - int((curr - start_time).total_seconds())
@@ -935,13 +948,13 @@ def level_two():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
         text="Level 2 — 20 / 60",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -1129,12 +1142,13 @@ def level_two():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters2) + " | Hold the gesture for "
-                             + str(
+                        text=str(detected_letters2)
+                        + " | Hold the gesture for "
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
                     )
             else:
                 cue_label.config(
@@ -1191,13 +1205,13 @@ def level_three():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
         text="Level 3 — 20 / 50",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -1360,12 +1374,13 @@ def level_three():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters3) + " | Hold the gesture for "
-                             + str(
+                        text=str(detected_letters3)
+                        + " | Hold the gesture for "
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
                     )
             else:
                 cue_label.config(
@@ -1441,13 +1456,13 @@ def level_four():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
         text="Level 4 — 20 / 40",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -1606,12 +1621,13 @@ def level_four():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters4) + " | Hold the gesture for "
-                             + str(
+                        text=str(detected_letters4)
+                        + " | Hold the gesture for "
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
                     )
             else:
                 cue_label.config(
@@ -1687,13 +1703,13 @@ def level_five():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
         text="Level 5 — 20 / 30",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -1856,12 +1872,13 @@ def level_five():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters5) + " | Hold the gesture for "
-                             + str(
+                        text=str(detected_letters5)
+                        + " | Hold the gesture for "
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
                     )
             else:
                 cue_label.config(
@@ -1935,13 +1952,13 @@ def level_six():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
         text="Level 6 — 20 / 20",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -2100,12 +2117,13 @@ def level_six():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters6) + " | Hold the gesture for "
-                             + str(
+                        text=str(detected_letters6)
+                        + " | Hold the gesture for "
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
                     )
             else:
                 cue_label.config(
@@ -2182,13 +2200,13 @@ def level_seven():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
         text="Level 7 — 20 / 15",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -2353,12 +2371,13 @@ def level_seven():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters7) + " | Hold the gesture for "
-                             + str(
+                        text=str(detected_letters7)
+                        + " | Hold the gesture for "
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
                     )
             else:
                 cue_label.config(
@@ -2434,13 +2453,13 @@ def level_eight():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
         text="Level 8 — 20 / 10",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -2603,12 +2622,13 @@ def level_eight():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters8) + " | Hold the gesture for "
-                             + str(
+                        text=str(detected_letters8)
+                        + " | Hold the gesture for "
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
                     )
             else:
                 cue_label.config(
@@ -2684,13 +2704,11 @@ def level_nine():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
-        label_frame,
-        text="Level 9 — 20 / 7",
-        font=("Montserrat ExtraBold", 40)
+        label_frame, text="Level 9 — 20 / 7", font=("Montserrat ExtraBold", 40)
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -2855,12 +2873,13 @@ def level_nine():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters9) + " | Hold the gesture for "
-                             + str(
+                        text=str(detected_letters9)
+                        + " | Hold the gesture for "
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
                     )
             else:
                 cue_label.config(
@@ -2934,13 +2953,13 @@ def level_ten():  # Define self as global variable
     lblLevel = Label(
         label_frame,
         text="VISUAL ACUITY ASSESSMENT PROPER                       |",
-        font=("Montserrat", 40)
+        font=("Montserrat", 40),
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
         text="Level 10 — 20 / 4",
-        font=("Montserrat ExtraBold", 40)
+        font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -3105,12 +3124,13 @@ def level_ten():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text=str(detected_letters10) + " | Hold the gesture for "
-                             + str(
+                        text=str(detected_letters10)
+                        + " | Hold the gesture for "
+                        + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                             + " second/s."
+                        + " second/s."
                     )
             else:
                 cue_label.config(
@@ -3171,6 +3191,10 @@ def results():  # Define self as global variable
     global score9
     global score10
 
+    # Cleanup webcam feed
+    cap.release()
+    cv2.destroyAllWindows()
+
     # Create a frame for the current level
     resultsScreen = Toplevel(main)
 
@@ -3191,7 +3215,9 @@ def results():  # Define self as global variable
     )
     lblTitle.pack(fill=X, pady=(50, 0))
     lblInstr = Label(
-        resultsScreen, text="Here's the results of the completed assessment.", font=("Montserrat", 15)
+        resultsScreen,
+        text="Here's the results of the completed assessment.",
+        font=("Montserrat", 15),
     )
     lblInstr.pack(fill=X)
 
@@ -3211,7 +3237,9 @@ def results():  # Define self as global variable
         side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE
     )
 
-    lblLevel = Label(frmLevel, text="— LEVEL —", font=("Montserrat ExtraBold", 20))
+    lblLevel = Label(
+        frmLevel, text="— LEVEL —", font=("Montserrat ExtraBold", 20)
+    )
     lblLevel.pack(fill=X)
     lblLevel1 = Label(frmLevel, text="Level 1", font=("Montserrat", 20))
     lblLevel1.pack(fill=X)
@@ -3234,7 +3262,11 @@ def results():  # Define self as global variable
     lblLevel10 = Label(frmLevel, text="Level 10", font=("Montserrat", 20))
     lblLevel10.pack(fill=X)
 
-    lblMeas = Label(frmMeasurement, text="— MEASUREMENT —", font=("Montserrat ExtraBold", 20))
+    lblMeas = Label(
+        frmMeasurement,
+        text="— MEASUREMENT —",
+        font=("Montserrat ExtraBold", 20),
+    )
     lblMeas.pack(fill=X)
     lblMeas1 = Label(frmMeasurement, text="20 / 70", font=("Montserrat", 20))
     lblMeas1.pack(fill=X)
@@ -3257,7 +3289,9 @@ def results():  # Define self as global variable
     lblMeas10 = Label(frmMeasurement, text="20 / 4", font=("Montserrat", 20))
     lblMeas10.pack(fill=X)
 
-    lblScore = Label(frmScore, text="— SCORE —", font=("Montserrat ExtraBold", 20))
+    lblScore = Label(
+        frmScore, text="— SCORE —", font=("Montserrat ExtraBold", 20)
+    )
     lblScore.pack(fill=X)
     lblResult1 = Label(frmScore, text=score1, font=("Montserrat", 20))
     lblResult1.pack(fill=X)
@@ -3330,7 +3364,7 @@ def main():
         "FOR MUTE AND/OR DEAF-MUTE INDIVIDUALS",
         font=("Montserrat ExtraBold", 35),
     )
-    lblTitle.pack(pady=(220,0), fill=X)
+    lblTitle.pack(pady=(220, 0), fill=X)
     lblAuthors = Label(
         main,
         text="• Cariaga • Pantallano • Tiu • Villanueva • Yango •",
@@ -3338,7 +3372,9 @@ def main():
     )
     lblAuthors.pack(pady=(0, 200), fill=X)
     lblGuide = Label(
-        main, text="Press the [Start] button to start", font=("Century Gothic", 10)
+        main,
+        text="Press the [Start] button to start",
+        font=("Century Gothic", 10),
     )
     lblGuide.pack(ipady=5, fill=X)
     btnStart = ttk.Button(main, text="Start", command=lambda: levelselect())
