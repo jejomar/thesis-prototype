@@ -4,7 +4,6 @@ import pickle
 import random
 from tkinter import *
 from tkinter import ttk
-
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -46,7 +45,7 @@ with open("model.pkl", "rb") as f:
     svm = pickle.load(f)
 
 # Constants
-CUE_FONT = ("Courier", 30)
+CUE_FONT = ("Montserrat", 35)
 
 # Start the camera
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
@@ -109,6 +108,11 @@ def returnREye():
     main.deiconify()
 
 
+def returnBEye():
+    beinstrScreen.withdraw()
+    main.deiconify()
+
+
 ######################
 
 ######################
@@ -120,9 +124,12 @@ def eyeChosen(eye):
     if eye == "left":
         eyeScreen.withdraw()
         lefteyeinstr()
-    else:
+    elif eye == "right":
         eyeScreen.withdraw()
         righteyeinstr()
+    else:
+        eyeScreen.withdraw()
+        botheyeinstr()
 
 
 ######################
@@ -180,7 +187,7 @@ def lvlChosen():
             eyeScreen.destroy()
             levselScreen.destroy()
             level_ten()
-    else:
+    elif chosenEye == "right":
         if chosenLvl == "one":
             reinstrScreen.destroy()
             eyeScreen.destroy()
@@ -232,6 +239,58 @@ def lvlChosen():
             levselScreen.destroy()
             level_ten()
 
+    else:
+        if chosenLvl == "one":
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_one()
+        elif chosenLvl == "two":
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_two()
+        elif chosenLvl == "thr":
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_three()
+        elif chosenLvl == "fou":
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_four()
+        elif chosenLvl == "fiv":
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_five()
+        elif chosenLvl == "six":
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_six()
+        elif chosenLvl == "sev":
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_seven()
+        elif chosenLvl == "eig":
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_eight()
+        elif chosenLvl == "nin":
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_nine()
+        else:
+            beinstrScreen.destroy()
+            eyeScreen.destroy()
+            levselScreen.destroy()
+            level_ten()
+
 
 ######################
 
@@ -260,55 +319,71 @@ def levelselect():
     )
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
     lblTitle = Label(
-        levselScreen, text="LEVEL SELECT", font=("Arial Black", 40)
+        levselScreen, text="— LEVEL SELECT —", font=("Montserrat ExtraBold", 40)
     )
     lblTitle.pack(fill=X)
+    lblInstr = Label(
+        levselScreen, text="Select the level to start the assessment.", font=("Montserrat", 15)
+    )
+    lblInstr.pack(fill=X)
 
     frmTop = Frame(levselScreen, width=width, height=(height - 45))
-    frmTop.pack(fill=X, pady=(30, 25))
+    frmTop.pack(fill=X, pady=(15, 5))
     frmBot = Frame(levselScreen, width=width, height=(height - 45))
-    frmBot.pack(fill=X, pady=(25, 50))
+    frmBot.pack(fill=X, pady=(5, 15))
+
+    one = PhotoImage(file=r"Buttons\20_70.png")
+    two = PhotoImage(file=r"Buttons\20_60.png")
+    thr = PhotoImage(file=r"Buttons\20_50.png")
+    fou = PhotoImage(file=r"Buttons\20_40.png")
+    fiv = PhotoImage(file=r"Buttons\20_30.png")
+    six = PhotoImage(file=r"Buttons\20_20.png")
+    sev = PhotoImage(file=r"Buttons\20_15.png")
+    eig = PhotoImage(file=r"Buttons\20_10.png")
+    nin = PhotoImage(file=r"Buttons\20_7.png")
+    ten = PhotoImage(file=r"Buttons\20_4.png")
+
 
     btnLevel1 = ttk.Button(
-        frmTop, text="Level 1", command=lambda: eyetest("one")
+        frmTop, text="Level 1", image=one, command=lambda: eyetest("one")
     )
-    btnLevel1.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel1.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
     btnLevel2 = ttk.Button(
-        frmTop, text="Level 2", command=lambda: eyetest("two")
+        frmTop, text="Level 2", image=two, command=lambda: eyetest("two")
     )
-    btnLevel2.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel2.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
     btnLevel3 = ttk.Button(
-        frmTop, text="Level 3", command=lambda: eyetest("thr")
+        frmTop, text="Level 3", image=thr, command=lambda: eyetest("thr")
     )
-    btnLevel3.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel3.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
     btnLevel4 = ttk.Button(
-        frmTop, text="Level 4", command=lambda: eyetest("fou")
+        frmTop, text="Level 4", image=fou, command=lambda: eyetest("fou")
     )
-    btnLevel4.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel4.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
     btnLevel5 = ttk.Button(
-        frmTop, text="Level 5", command=lambda: eyetest("fiv")
+        frmTop, text="Level 5", image=fiv, command=lambda: eyetest("fiv")
     )
-    btnLevel5.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel5.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
     btnLevel6 = ttk.Button(
-        frmBot, text="Level 6", command=lambda: eyetest("six")
+        frmBot, text="Level 6", image=six, command=lambda: eyetest("six")
     )
-    btnLevel6.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel6.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
     btnLevel7 = ttk.Button(
-        frmBot, text="Level 7", command=lambda: eyetest("sev")
+        frmBot, text="Level 7", image=sev, command=lambda: eyetest("sev")
     )
-    btnLevel7.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel7.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
     btnLevel8 = ttk.Button(
-        frmBot, text="Level 8", command=lambda: eyetest("eig")
+        frmBot, text="Level 8", image=eig, command=lambda: eyetest("eig")
     )
-    btnLevel8.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel8.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
     btnLevel9 = ttk.Button(
-        frmBot, text="Level 9", command=lambda: eyetest("nin")
+        frmBot, text="Level 9", image=nin, command=lambda: eyetest("nin")
     )
-    btnLevel9.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel9.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
     btnLevel10 = ttk.Button(
-        frmBot, text="Level 10", command=lambda: eyetest("ten")
+        frmBot, text="Level 10", image=ten, command=lambda: eyetest("ten")
     )
-    btnLevel10.pack(side=LEFT, padx=30, pady=30, ipadx=67, ipady=70)
+    btnLevel10.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
 
     levselScreen.mainloop()
 
@@ -323,8 +398,9 @@ def eyetest(level):
 
     chosenLvl = level
 
-    left = PhotoImage(file=r"lefteye.png")
-    right = PhotoImage(file=r"righteye.png")
+    left = PhotoImage(file=r"Buttons\lefteye.png")
+    right = PhotoImage(file=r"Buttons\righteye.png")
+    both = PhotoImage(file=r"Buttons\botheye.png")
 
     eyeScreen = Toplevel(main)
     screen_width = eyeScreen.winfo_screenwidth()
@@ -346,37 +422,50 @@ def eyetest(level):
     )
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
     lblTitle = Label(
-        eyeScreen, text="CHOOSE THE EYE TO TEST", font=("Arial Black", 40)
+        eyeScreen, text="— EYE TO TEST —", font=("Montserrat ExtraBold", 40)
     )
     lblTitle.pack(fill=X)
+    lblInstr = Label(
+        eyeScreen, text="Select which eye will be tested.", font=("Montserrat", 15)
+    )
+    lblInstr.pack(fill=X)
 
     frmLeft = Frame(eyeScreen, width=width, height=(height - 45))
     frmLeft.pack(
-        side=LEFT, pady=(20, 20), padx=(20, 10), fill=BOTH, expand=TRUE
+        side=LEFT, pady=(10, 20), padx=(20, 10), fill=BOTH, expand=TRUE
+    )
+    frmBoth = Frame(eyeScreen, width=width, height=(height - 45))
+    frmBoth.pack(
+        side=LEFT, pady=(10, 20), padx=(10, 20), fill=BOTH, expand=TRUE
     )
     frmRight = Frame(eyeScreen, width=width, height=(height - 45))
     frmRight.pack(
-        side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE
+        side=LEFT, pady=(10, 20), padx=(10, 20), fill=BOTH, expand=TRUE
     )
 
     btnLeft = ttk.Button(
         frmLeft,
         text="Left Eye",
-        image=right,
+        image=left,
         command=lambda: eyeChosen("left"),
     )
-    btnLeft.pack(pady=(30, 20), padx=20, ipady=150, ipadx=200)
-    lblLeft = Label(frmLeft, text="LEFT EYE", font=("Arial", 20))
-    lblLeft.pack()
+    btnLeft.pack(pady=(20, 10), padx=20, fill=BOTH, ipady=100)
+
+    btnBoth = ttk.Button(
+        frmBoth,
+        text="Both Eye",
+        image=both,
+        command=lambda: eyeChosen("both"),
+    )
+    btnBoth.pack(pady=(20, 10), padx=20, fill=BOTH, ipady=100)
+
     btnRight = ttk.Button(
         frmRight,
         text="Right Eye",
-        image=left,
+        image=right,
         command=lambda: eyeChosen("right"),
     )
-    btnRight.pack(pady=(30, 20), padx=20, ipady=150, ipadx=200)
-    lblRight = Label(frmRight, text="RIGHT EYE", font=("Arial", 20))
-    lblRight.pack()
+    btnRight.pack(pady=(20, 10), padx=20, fill=BOTH, ipady=100)
 
     eyeScreen.mainloop()
 
@@ -409,27 +498,33 @@ def lefteyeinstr():
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
     lblTitle = Label(
         leinstrScreen,
-        text="INSTRUCTIONS BEFORE THE ASSESSMENT",
-        font=("Arial Black", 40),
+        text="— INSTRUCTIONS —",
+        font=("Montserrat ExtraBold", 40)
     )
     lblTitle.pack(fill=X)
+    lblInstr = Label(
+        leinstrScreen, text="Please read the following.", font=("Montserrat", 15)
+    )
+    lblInstr.pack(fill=X)
 
     frmInstruction = Frame(leinstrScreen, width=width, height=(height - 80))
     frmInstruction.pack(fill=BOTH, expand=TRUE)
 
     lblInstruction = Label(
         frmInstruction,
-        text="\n\n\n1. Stand in front of the camera, with your hand centered in the camera frame.\n\n\n"
-        "2. Hold the gesture of the first letter for 5 seconds, and 8 seconds for the remaining.\n\n\n"
-        "3. When the timer reaches 1 second, prepare the gesture for the next letter.\n\n\n"
-        "4. Once done, repeat steps 2 and 3 until all letters are done.\n",
-        font=("Arial", 24),
+        text="1. Kindly keep your right eye covered throughout the exam.\n\n"
+             "2. Raise only one hand and make sure it's centered in the camera frame.\n\n"
+             "3. Read and perform the gestures of the displayed letters one at a time every 5 seconds"
+             " and hold the gesture within the given time interval.\n\n"
+             "4. As the timer reaches 1 second, prepare for the next letter.\n\n"
+             "5. Once done, repeat steps 1 and 4 until all letters are done.",
+        font=("Montserrat SemiBold", 24),
         justify=LEFT,
     )
     lblInstruction.bind(
         "<Configure>", lambda e: lblInstruction.config(wraplength=width * 0.95)
     )
-    lblInstruction.pack(fill=X, padx=10, pady=20)
+    lblInstruction.pack(fill=X, padx=10, pady=(30,20))
 
     btnBegin = ttk.Button(
         leinstrScreen, text="Begin", command=lambda: lvlChosen()
@@ -444,6 +539,8 @@ def lefteyeinstr():
 ######################
 def righteyeinstr():
     global reinstrScreen
+    levselScreen.withdraw()
+
     reinstrScreen = Toplevel(main)
     screen_width = reinstrScreen.winfo_screenwidth()
     screen_height = reinstrScreen.winfo_screenheight()
@@ -465,27 +562,33 @@ def righteyeinstr():
     btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
     lblTitle = Label(
         reinstrScreen,
-        text="INSTRUCTIONS BEFORE THE ASSESSMENT",
-        font=("Arial Black", 40),
+        text="— INSTRUCTIONS —",
+        font=("Montserrat ExtraBold", 40)
     )
     lblTitle.pack(fill=X)
+    lblInstr = Label(
+        reinstrScreen, text="Please read the following.", font=("Montserrat", 15)
+    )
+    lblInstr.pack(fill=X)
 
     frmInstruction = Frame(reinstrScreen, width=width, height=(height - 80))
     frmInstruction.pack(fill=BOTH, expand=TRUE)
 
     lblInstruction = Label(
         frmInstruction,
-        text="\n\n\n1. Stand in front of the camera, with your hand centered in the camera frame.\n\n\n"
-        "2. Hold the gesture of the first letter for 5 seconds, and 8 seconds for the remaining.\n\n\n"
-        "3. When the timer reaches 1 second, prepare the gesture for the next letter.\n\n\n"
-        "4. Once done, repeat steps 2 and 3 until all letters are done.\n",
-        font=("Arial", 24),
+        text="1. Kindly keep your left eye covered throughout the exam.\n\n"
+             "2. Raise only one hand and make sure it's centered in the camera frame.\n\n"
+             "3. Read and perform the gestures of the displayed letters one at a time every 5 seconds"
+             " and hold the gesture within the given time interval.\n\n"
+             "4. As the timer reaches 1 second, prepare for the next letter.\n\n"
+             "5. Once done, repeat steps 1 and 4 until all letters are done.",
+        font=("Montserrat SemiBold", 24),
         justify=LEFT,
     )
     lblInstruction.bind(
         "<Configure>", lambda e: lblInstruction.config(wraplength=width * 0.95)
     )
-    lblInstruction.pack(fill=X, padx=10, pady=20)
+    lblInstruction.pack(fill=X, padx=10, pady=(30,20))
 
     btnBegin = ttk.Button(
         reinstrScreen, text="Begin", command=lambda: lvlChosen()
@@ -493,6 +596,69 @@ def righteyeinstr():
     btnBegin.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=E)
 
     reinstrScreen.mainloop()
+
+
+######################
+
+######################
+def botheyeinstr():
+    global beinstrScreen
+    levselScreen.withdraw()
+
+    beinstrScreen = Toplevel(main)
+    screen_width = beinstrScreen.winfo_screenwidth()
+    screen_height = beinstrScreen.winfo_screenheight()
+    width = screen_width * 0.7
+    height = screen_height * 0.7
+    x = (screen_width / 2) - (width / 2)
+    y = (screen_height / 2) - (height / 2)
+
+    beinstrScreen.title(
+        "Visual Acuity Assessment Device for Mute and/or Mute Individuals"
+    )
+    beinstrScreen.geometry("%dx%d+%d+%d" % (width, height, x, y))
+    beinstrScreen.overrideredirect(0)
+    beinstrScreen.pack_propagate(0)
+
+    btnReturn = ttk.Button(
+        beinstrScreen, text="Return", command=lambda: returnBEye()
+    )
+    btnReturn.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
+    lblTitle = Label(
+        beinstrScreen,
+        text="— INSTRUCTIONS —",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblTitle.pack(fill=X)
+    lblInstr = Label(
+        beinstrScreen, text="Please read the following.", font=("Montserrat", 15)
+    )
+    lblInstr.pack(fill=X)
+
+    frmInstruction = Frame(beinstrScreen, width=width, height=(height - 80))
+    frmInstruction.pack(fill=BOTH, expand=TRUE)
+
+    lblInstruction = Label(
+        frmInstruction,
+        text="1. Raise only one hand and make sure it's centered in the camera frame.\n\n"
+             "2. Read and perform the gestures of the displayed letters one at a time every 5 seconds"
+             " and hold the gesture within the given time interval.\n\n"
+             "3. As the timer reaches 1 second, prepare for the next letter.\n\n"
+             "4. Once done, repeat steps 1 and 3 until all letters are done.",
+        font=("Montserrat SemiBold", 24),
+        justify=LEFT,
+    )
+    lblInstruction.bind(
+        "<Configure>", lambda e: lblInstruction.config(wraplength=width * 0.95)
+    )
+    lblInstruction.pack(fill=X, padx=10,pady=(30,20))
+
+    btnBegin = ttk.Button(
+        beinstrScreen, text="Begin", command=lambda: lvlChosen()
+    )
+    btnBegin.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=E)
+
+    beinstrScreen.mainloop()
 
 
 ######################
@@ -518,13 +684,13 @@ def level_one():  # Define self as global variable
     global start_time
     global finish
 
-    label_frame = Frame(run_level_one, width=1920, height=50)
+    label_frame = Frame(run_level_one, width=1920, height=35)
     label_frame.pack(fill=X)
 
     level_indic = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 1 [20/70]",
-        font=("Courier", 30),
+        text="Visual Acuity Assessment Exam\n" "Level [20/70]",
+        font=("Montserrat SemiBold", 35),
         justify=LEFT,
     )
     level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
@@ -556,7 +722,7 @@ def level_one():  # Define self as global variable
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
-    cue_label.pack(side=LEFT, padx=30, pady=20)
+    cue_label.pack(side=LEFT, padx=30, pady=30)
 
     # Display the camera feed in the GUI
     cam_feed = Label(run_level_one)
@@ -683,17 +849,16 @@ def level_one():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
+                        text=str(detected_letters1) + " | Hold the gesture for "
                         + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
                         + " second/s."
-                        + str(detected_letters1)
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters1)
+                    text=str(detected_letters1) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
@@ -3151,17 +3316,25 @@ def main():
 
     lblTitle = Label(
         main,
-        text="Visual Acuity Assessment Device for Mute\n"
-        "and or Deaf/Mute Individuals",
-        font=("Arial Black", 40),
+        text="VISUAL ACUITY ASSESSMENT DEVICE\n"
+        "FOR MUTE AND/OR DEAF-MUTE INDIVIDUALS",
+        font=("Montserrat ExtraBold", 35),
     )
-    lblTitle.pack(ipady=250, fill=X)
+    lblTitle.pack(pady=(220,0), fill=X)
+    lblAuthors = Label(
+        main,
+        text="• Cariaga • Pantallano • Tiu • Villanueva • Yango •",
+        font=("Montserrat", 15),
+    )
+    lblAuthors.pack(pady=(0, 200), fill=X)
     lblGuide = Label(
-        main, text="Press the button to start...", font=("Century Gothic", 10)
+        main, text="Press the [Start] button to start", font=("Century Gothic", 10)
     )
     lblGuide.pack(ipady=5, fill=X)
     btnStart = ttk.Button(main, text="Start", command=lambda: levelselect())
     btnStart.pack(ipadx=50, ipady=10)
+    btnExit = ttk.Button(main, text="Exit", command=lambda: main.quit())
+    btnExit.pack(ipadx=50, ipady=10)
 
     # Run the main() function
     main.mainloop()
