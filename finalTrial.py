@@ -687,13 +687,18 @@ def level_one():  # Define self as global variable
     label_frame = Frame(run_level_one, width=1920, height=35)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "Level [20/70]",
-        font=("Montserrat SemiBold", 35),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT,padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 1 — 20 / 70",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT,padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -889,11 +894,12 @@ def level_one():  # Define self as global variable
                 ctr_level_one = ctr_level_one + 1
 
         if ctr_level_one != 0:
-            score1 = str(ctr_level_one) + "/" + str(arrlen)
+            score1 = str(ctr_level_one) + " / " + str(arrlen)
             print(score1)
             level_two()
             run_level_one.destroy()
         else:
+            score1 = str(ctr_level_one) + " / " + str(arrlen)
             cv2.destroyAllWindows()
             results()
             run_level_one.destroy()
@@ -923,16 +929,21 @@ def level_two():  # Define self as global variable
     global finish
 
     # Generate the random letters
-    label_frame = Frame(run_level_two, width=1920, height=50)
+    label_frame = Frame(run_level_two, width=1920, height=35)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 2 [20/60]",
-        font=("Courier", 30),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 2 — 20 / 60",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -962,7 +973,7 @@ def level_two():  # Define self as global variable
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
-    cue_label.pack(side=LEFT, padx=30, pady=20)
+    cue_label.pack(side=LEFT, padx=30, pady=30)
 
     # # Function for image processing
     def image_processed(hand_img):
@@ -1087,11 +1098,12 @@ def level_two():  # Define self as global variable
                     ctr_level_two = ctr_level_two + 1
 
             if ctr_level_two != 0:
-                score2 = str(ctr_level_two) + "/" + str(arrlen)
+                score2 = str(ctr_level_two) + " / " + str(arrlen)
                 print(score2)
                 level_three()
                 run_level_two.destroy()
             else:
+                score2 = str(ctr_level_two) + " / " + str(arrlen)
                 cv2.destroyAllWindows()
                 results()
                 run_level_two.destroy()
@@ -1117,17 +1129,16 @@ def level_two():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
-                        + str(
+                        text=str(detected_letters2) + " | Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                        + " second/s."
-                        + str(detected_letters2)
+                             + " second/s."
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters2)
+                    text=str(detected_letters2) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
@@ -1177,13 +1188,18 @@ def level_three():  # Define self as global variable
     label_frame = Frame(run_level_three, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 3 [20/50]",
-        font=("Courier", 30),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 3 — 20 / 50",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -1213,7 +1229,7 @@ def level_three():  # Define self as global variable
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
-    cue_label.pack(side=LEFT, padx=30, pady=10)
+    cue_label.pack(side=LEFT, padx=30, pady=30)
 
     # # Function for image processing
     def image_processed(hand_img):
@@ -1323,29 +1339,6 @@ def level_three():  # Define self as global variable
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            # For verfication and time
-
-            # Verification Section
-
-        def verify():
-            global score3
-
-            ctr_level_three = 0
-            arrlen = len(random_thr)
-            for i in range(arrlen):
-                if detected_letters3[i] == random_thr[i]:
-                    ctr_level_three = ctr_level_three + 1
-
-            if ctr_level_three != 0:
-                score3 = str(ctr_level_three) + "/" + str(arrlen)
-                print(score3)
-                level_four()
-                run_level_three.destroy()
-            else:
-                cv2.destroyAllWindows()
-                results()
-                run_level_three.destroy()
-
         if len(detected_letters3) < 5:
 
             if output.multi_hand_landmarks:
@@ -1367,22 +1360,20 @@ def level_three():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
-                        + str(
+                        text=str(detected_letters3) + " | Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                        + " second/s."
-                        + str(detected_letters3)
+                             + " second/s."
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters3)
+                    text=str(detected_letters3) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
-                countdown = 5
         else:
             verify()
 
@@ -1397,6 +1388,26 @@ def level_three():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+    def verify():
+        global score3
+
+        ctr_level_three = 0
+        arrlen = len(random_thr)
+        for i in range(arrlen):
+            if detected_letters3[i] == random_thr[i]:
+                ctr_level_three = ctr_level_three + 1
+
+        if ctr_level_three != 0:
+            score3 = str(ctr_level_three) + " / " + str(arrlen)
+            print(score3)
+            level_four()
+            run_level_three.destroy()
+        else:
+            score3 = str(ctr_level_three) + " / " + str(arrlen)
+            cv2.destroyAllWindows()
+            results()
+            run_level_three.destroy()
 
 
 ######################
@@ -1427,13 +1438,18 @@ def level_four():  # Define self as global variable
     label_frame = Frame(run_level_four, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 4 [20/40]",
-        font=("Courier", 30),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 4 — 20 / 40",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -1463,7 +1479,7 @@ def level_four():  # Define self as global variable
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
-    cue_label.pack(side=LEFT, padx=30, pady=10)
+    cue_label.pack(side=LEFT, padx=30, pady=30)
 
     # # Function for image processing
     def image_processed(hand_img):
@@ -1573,36 +1589,9 @@ def level_four():  # Define self as global variable
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            # For verfication and time
-
-            # Verification Section
-
-        def verify():
-            global score4
-
-            ctr_level_four = 0
-            arrlen = len(random_fou)
-            for i in range(arrlen):
-                if detected_letters4[i] == random_fou[i]:
-                    ctr_level_four = ctr_level_four + 1
-
-            if ctr_level_four != 0:
-                score4 = str(ctr_level_four) + "/" + str(arrlen)
-                print(score4)
-                level_five()
-                run_level_four.destroy()
-            else:
-                cv2.destroyAllWindows()
-                results()
-                run_level_four.destroy()
-
         if len(detected_letters4) < 5:
 
             if output.multi_hand_landmarks:
-                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters4) == 0:
                     countdown = 5
                 else:
@@ -1617,22 +1606,20 @@ def level_four():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
-                        + str(
+                        text=str(detected_letters4) + " | Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                        + " second/s."
-                        + str(detected_letters4)
+                             + " second/s."
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters4)
+                    text=str(detected_letters4) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
-                countdown = 5
         else:
             verify()
 
@@ -1647,6 +1634,26 @@ def level_four():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+    def verify():
+        global score4
+
+        ctr_level_four = 0
+        arrlen = len(random_fou)
+        for i in range(arrlen):
+            if detected_letters4[i] == random_fou[i]:
+                ctr_level_four = ctr_level_four + 1
+
+        if ctr_level_four != 0:
+            score4 = str(ctr_level_four) + " / " + str(arrlen)
+            print(score4)
+            level_five()
+            run_level_four.destroy()
+        else:
+            score4 = str(ctr_level_four) + " / " + str(arrlen)
+            cv2.destroyAllWindows()
+            results()
+            run_level_four.destroy()
 
 
 ######################
@@ -1677,13 +1684,18 @@ def level_five():  # Define self as global variable
     label_frame = Frame(run_level_five, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 5 [20/30]",
-        font=("Courier", 30),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 5 — 20 / 30",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -1713,7 +1725,7 @@ def level_five():  # Define self as global variable
     camera_frame.pack(side=BOTTOM, fill=X)
 
     cue_label = Label(camera_frame, text=" ", font=CUE_FONT)
-    cue_label.pack(side=LEFT, padx=30, pady=10)
+    cue_label.pack(side=LEFT, padx=30, pady=30)
 
     # # Function for image processing
     def image_processed(hand_img):
@@ -1823,29 +1835,6 @@ def level_five():  # Define self as global variable
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            # For verfication and time
-
-            # Verification Section
-
-        def verify():
-            global score5
-
-            ctr_level_five = 0
-            arrlen = len(random_five)
-            for i in range(arrlen):
-                if detected_letters5[i] == random_five[i]:
-                    ctr_level_five = ctr_level_five + 1
-
-            if ctr_level_five != 0:
-                score5 = str(ctr_level_five) + "/" + str(arrlen)
-                print(score5)
-                level_six()
-                run_level_five.destroy()
-            else:
-                cv2.destroyAllWindows()
-                results()
-                run_level_five.destroy()
-
         if len(detected_letters5) < 5:
 
             if output.multi_hand_landmarks:
@@ -1867,22 +1856,20 @@ def level_five():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
-                        + str(
+                        text=str(detected_letters5) + " | Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                        + " second/s."
-                        + str(detected_letters5)
+                             + " second/s."
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters5)
+                    text=str(detected_letters5) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
-                countdown = 5
         else:
             verify()
 
@@ -1897,6 +1884,26 @@ def level_five():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+    def verify():
+        global score5
+
+        ctr_level_five = 0
+        arrlen = len(random_five)
+        for i in range(arrlen):
+            if detected_letters5[i] == random_five[i]:
+                ctr_level_five = ctr_level_five + 1
+
+        if ctr_level_five != 0:
+            score5 = str(ctr_level_five) + " / " + str(arrlen)
+            print(score5)
+            level_six()
+            run_level_five.destroy()
+        else:
+            score5 = str(ctr_level_five) + " / " + str(arrlen)
+            cv2.destroyAllWindows()
+            results()
+            run_level_five.destroy()
 
 
 ######################
@@ -1925,13 +1932,18 @@ def level_six():  # Define self as global variable
     label_frame = Frame(run_level_six, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 6 [20/20]",
-        font=("Courier", 30),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 6 — 20 / 20",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -2071,37 +2083,9 @@ def level_six():  # Define self as global variable
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            # For verfication and time
-
-            # Verification Section
-
-        def verify():
-            global score6
-
-            ctr_level_six = 0
-            arrlen = len(random_six)
-            for i in range(arrlen):
-                if detected_letters6[i] == random_six[i]:
-                    ctr_level_six = ctr_level_six + 1
-
-            if ctr_level_six != 0:
-                score6 = str(ctr_level_six) + "/" + str(arrlen)
-                print(score6)
-                level_seven()
-                run_level_six.destroy()
-
-            else:
-                cv2.destroyAllWindows()
-                results()
-                run_level_six.destroy()
-
         if len(detected_letters6) < 5:
 
             if output.multi_hand_landmarks:
-                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters6) == 0:
                     countdown = 5
                 else:
@@ -2116,22 +2100,20 @@ def level_six():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
-                        + str(
+                        text=str(detected_letters6) + " | Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                        + " second/s."
-                        + str(detected_letters6)
+                             + " second/s."
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters6)
+                    text=str(detected_letters6) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
-                countdown = 5
         else:
             verify()
 
@@ -2146,6 +2128,27 @@ def level_six():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+    def verify():
+        global score6
+
+        ctr_level_six = 0
+        arrlen = len(random_six)
+        for i in range(arrlen):
+            if detected_letters6[i] == random_six[i]:
+                ctr_level_six = ctr_level_six + 1
+
+        if ctr_level_six != 0:
+            score6 = str(ctr_level_six) + " / " + str(arrlen)
+            print(score6)
+            level_seven()
+            run_level_six.destroy()
+
+        else:
+            score6 = str(ctr_level_six) + " / " + str(arrlen)
+            cv2.destroyAllWindows()
+            results()
+            run_level_six.destroy()
 
 
 ######################
@@ -2176,13 +2179,18 @@ def level_seven():  # Define self as global variable
     label_frame = Frame(run_level_seven, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 7 [20/15]",
-        font=("Courier", 30),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 7 — 20 / 15",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -2324,29 +2332,6 @@ def level_seven():  # Define self as global variable
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            # For verfication and time
-
-            # Verification Section
-
-        def verify():
-            global score7
-
-            ctr_level_seven = 0
-            arrlen = len(random_seven)
-            for i in range(arrlen):
-                if detected_letters7[i] == random_seven[i]:
-                    ctr_level_seven = ctr_level_seven + 1
-
-            if ctr_level_seven != 0:
-                score7 = str(ctr_level_seven) + "/" + str(arrlen)
-                print(score7)
-                level_eight()
-                run_level_seven.destroy()
-            else:
-                cv2.destroyAllWindows()
-                results()
-                run_level_seven.destroy()
-
         if len(detected_letters7) < 5:
 
             if output.multi_hand_landmarks:
@@ -2368,22 +2353,20 @@ def level_seven():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
-                        + str(
+                        text=str(detected_letters7) + " | Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                        + " second/s."
-                        + str(detected_letters7)
+                             + " second/s."
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters7)
+                    text=str(detected_letters7) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
-                countdown = 5
         else:
             verify()
 
@@ -2398,6 +2381,26 @@ def level_seven():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+    def verify():
+        global score7
+
+        ctr_level_seven = 0
+        arrlen = len(random_seven)
+        for i in range(arrlen):
+            if detected_letters7[i] == random_seven[i]:
+                ctr_level_seven = ctr_level_seven + 1
+
+        if ctr_level_seven != 0:
+            score7 = str(ctr_level_seven) + " / " + str(arrlen)
+            print(score7)
+            level_eight()
+            run_level_seven.destroy()
+        else:
+            score7 = str(ctr_level_seven) + " / " + str(arrlen)
+            cv2.destroyAllWindows()
+            results()
+            run_level_seven.destroy()
 
 
 ######################
@@ -2428,13 +2431,18 @@ def level_eight():  # Define self as global variable
     label_frame = Frame(run_level_eight, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 8 [20/10]",
-        font=("Courier", 30),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 8 — 20 / 10",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -2578,36 +2586,9 @@ def level_eight():  # Define self as global variable
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            # For verfication and time
-
-            # Verification Section
-
-        def verify():
-            global score8
-
-            ctr_level_eight = 0
-            arrlen = len(random_eight)
-            for i in range(arrlen):
-                if detected_letters8[i] == random_eight[i]:
-                    ctr_level_eight = ctr_level_eight + 1
-
-            if ctr_level_eight != 0:
-                score8 = str(ctr_level_eight) + "/" + str(arrlen)
-                print(score8)
-                level_nine()
-                run_level_eight.destroy()
-            else:
-                cv2.destroyAllWindows()
-                results()
-                run_level_eight.destroy()
-
         if len(detected_letters8) < 5:
 
             if output.multi_hand_landmarks:
-                # This will be implemented kasi pag unang letter, 8 seconds ang inaantay bago i-record yung letter.
-                # Therefore, one na ang detected_letters ay walang laman or equal to zero (0),
-                # Ang countdown nya is set to five lang. Pero, kapag may laman na,
-                # Ang countdown will be set to eight kasi may cooldown time tayo na 3 seconds.
                 if len(detected_letters8) == 0:
                     countdown = 5
                 else:
@@ -2622,22 +2603,20 @@ def level_eight():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
-                        + str(
+                        text=str(detected_letters8) + " | Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                        + " second/s."
-                        + str(detected_letters8)
+                             + " second/s."
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters8)
+                    text=str(detected_letters8) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
-                countdown = 5
         else:
             verify()
 
@@ -2652,6 +2631,26 @@ def level_eight():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+    def verify():
+        global score8
+
+        ctr_level_eight = 0
+        arrlen = len(random_eight)
+        for i in range(arrlen):
+            if detected_letters8[i] == random_eight[i]:
+                ctr_level_eight = ctr_level_eight + 1
+
+        if ctr_level_eight != 0:
+            score8 = str(ctr_level_eight) + " / " + str(arrlen)
+            print(score8)
+            level_nine()
+            run_level_eight.destroy()
+        else:
+            score8 = str(ctr_level_eight) + " / " + str(arrlen)
+            cv2.destroyAllWindows()
+            results()
+            run_level_eight.destroy()
 
 
 ######################
@@ -2682,13 +2681,18 @@ def level_nine():  # Define self as global variable
     label_frame = Frame(run_level_nine, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 9 [20/7]",
-        font=("Courier", 30),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 9 — 20 / 7",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -2830,29 +2834,6 @@ def level_nine():  # Define self as global variable
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            # For verfication and time
-
-            # Verification Section
-
-        def verify():
-            global score9
-
-            ctr_level_nine = 0
-            arrlen = len(random_nine)
-            for i in range(arrlen):
-                if detected_letters9[i] == random_nine[i]:
-                    ctr_level_nine = ctr_level_nine + 1
-
-            if ctr_level_nine != 0:
-                score9 = str(ctr_level_nine) + "/" + str(arrlen)
-                print(score9)
-                level_ten()
-                run_level_nine.destroy()
-            else:
-                cv2.destroyAllWindows()
-                results()
-                run_level_nine.destroy()
-
         if len(detected_letters9) < 5:
 
             if output.multi_hand_landmarks:
@@ -2874,22 +2855,20 @@ def level_nine():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
-                        + str(
+                        text=str(detected_letters9) + " | Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                        + " second/s."
-                        + str(detected_letters9)
+                             + " second/s."
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters9)
+                    text=str(detected_letters9) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
-                countdown = 5
         else:
             verify()
 
@@ -2904,6 +2883,26 @@ def level_nine():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+    def verify():
+        global score9
+
+        ctr_level_nine = 0
+        arrlen = len(random_nine)
+        for i in range(arrlen):
+            if detected_letters9[i] == random_nine[i]:
+                ctr_level_nine = ctr_level_nine + 1
+
+        if ctr_level_nine != 0:
+            score9 = str(ctr_level_nine) + " / " + str(arrlen)
+            print(score9)
+            level_ten()
+            run_level_nine.destroy()
+        else:
+            score9 = str(ctr_level_nine) + " / " + str(arrlen)
+            cv2.destroyAllWindows()
+            results()
+            run_level_nine.destroy()
 
 
 ######################
@@ -2932,13 +2931,18 @@ def level_ten():  # Define self as global variable
     label_frame = Frame(run_level_ten, width=1920, height=50)
     label_frame.pack(fill=X)
 
-    level_indic = Label(
+    lblLevel = Label(
         label_frame,
-        text="Visual Acuity Assessment Exam\n" "LEVEL 10 [20/4]",
-        font=("Courier", 30),
-        justify=LEFT,
+        text="VISUAL ACUITY ASSESSMENT PROPER                       |",
+        font=("Montserrat", 40)
     )
-    level_indic.pack(side=LEFT, padx=(20, 0), pady=20)
+    lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
+    lblIndic = Label(
+        label_frame,
+        text="Level 10 — 20 / 4",
+        font=("Montserrat ExtraBold", 40)
+    )
+    lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
     # Print the generated letters on the screen
     def print_letters():
@@ -3080,29 +3084,6 @@ def level_ten():  # Define self as global variable
             print(f"Finish: {finish.isoformat()}")
             print(f"Current: {curr.isoformat()}")
 
-            # For verfication and time
-
-            # Verification Section
-
-        def verify():
-            global score10
-
-            ctr_level_ten = 0
-            arrlen = len(random_ten)
-            for i in range(arrlen):
-                if detected_letters10[i] == random_ten[i]:
-                    ctr_level_ten = ctr_level_ten + 1
-
-            if ctr_level_ten != 0:
-                score10 = str(ctr_level_ten) + "/" + str(arrlen)
-                print(score10)
-                results()
-                run_level_ten.destroy()
-            else:
-                cv2.destroyAllWindows()
-                results()
-                run_level_ten.destroy()
-
         if len(detected_letters10) < 5:
 
             if output.multi_hand_landmarks:
@@ -3124,22 +3105,20 @@ def level_ten():  # Define self as global variable
                     cv2.waitKey(3000)
                 else:
                     cue_label.config(
-                        text="Hold the gesture for "
-                        + str(
+                        text=str(detected_letters10) + " | Hold the gesture for "
+                             + str(
                             countdown
                             - int((curr - start_time).total_seconds())
                         )
-                        + " second/s."
-                        + str(detected_letters10)
+                             + " second/s."
                     )
             else:
                 cue_label.config(
-                    text="No hands detected." + str(detected_letters10)
+                    text=str(detected_letters10) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
-                countdown = 5
         else:
             verify()
 
@@ -3154,6 +3133,26 @@ def level_ten():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
+
+    def verify():
+        global score10
+
+        ctr_level_ten = 0
+        arrlen = len(random_ten)
+        for i in range(arrlen):
+            if detected_letters10[i] == random_ten[i]:
+                ctr_level_ten = ctr_level_ten + 1
+
+        if ctr_level_ten != 0:
+            score10 = str(ctr_level_ten) + " / " + str(arrlen)
+            print(score10)
+            results()
+            run_level_ten.destroy()
+        else:
+            score10 = str(ctr_level_ten) + " / " + str(arrlen)
+            cv2.destroyAllWindows()
+            results()
+            run_level_ten.destroy()
 
 
 ######################
@@ -3187,10 +3186,17 @@ def results():  # Define self as global variable
 
     lblTitle = Label(
         resultsScreen,
-        text="VISUAL ACUITY ASSESSMENT RESULTS",
-        font=("Arial Black", 40),
+        text="— ASSESSMENT RESULTS —",
+        font=("Montserrat ExtraBold", 40),
     )
-    lblTitle.pack(fill=X)
+    lblTitle.pack(fill=X, pady=(50, 0))
+    lblInstr = Label(
+        resultsScreen, text="Here's the results of the completed assessment.", font=("Montserrat", 15)
+    )
+    lblInstr.pack(fill=X)
+
+    frmBottom = Frame(resultsScreen, width=width, height=10)
+    frmBottom.pack(side=BOTTOM, padx=10, pady=10, fill=X)
 
     frmLevel = Frame(resultsScreen, width=width, height=(height - 60))
     frmLevel.pack(
@@ -3204,70 +3210,74 @@ def results():  # Define self as global variable
     frmScore.pack(
         side=LEFT, pady=(20, 20), padx=(10, 20), fill=BOTH, expand=TRUE
     )
-    frmBottom = Frame(resultsScreen, width=width, height=20)
-    frmBottom.pack(side=BOTTOM, padx=10, pady=10, ipadx=30, ipady=10, anchor=W)
 
-    lblLevel1 = Label(frmLevel, text="Level 1", font=("Arial", 15, "bold"))
+    lblLevel = Label(frmLevel, text="— LEVEL —", font=("Montserrat ExtraBold", 20))
+    lblLevel.pack(fill=X)
+    lblLevel1 = Label(frmLevel, text="Level 1", font=("Montserrat", 20))
     lblLevel1.pack(fill=X)
-    lblLevel2 = Label(frmLevel, text="Level 2", font=("Arial", 15, "bold"))
+    lblLevel2 = Label(frmLevel, text="Level 2", font=("Montserrat", 20))
     lblLevel2.pack(fill=X)
-    lblLevel3 = Label(frmLevel, text="Level 3", font=("Arial", 15, "bold"))
+    lblLevel3 = Label(frmLevel, text="Level 3", font=("Montserrat", 20))
     lblLevel3.pack(fill=X)
-    lblLevel4 = Label(frmLevel, text="Level 4", font=("Arial", 15, "bold"))
+    lblLevel4 = Label(frmLevel, text="Level 4", font=("Montserrat", 20))
     lblLevel4.pack(fill=X)
-    lblLevel5 = Label(frmLevel, text="Level 5", font=("Arial", 15, "bold"))
+    lblLevel5 = Label(frmLevel, text="Level 5", font=("Montserrat", 20))
     lblLevel5.pack(fill=X)
-    lblLevel6 = Label(frmLevel, text="Level 6", font=("Arial", 15, "bold"))
+    lblLevel6 = Label(frmLevel, text="Level 6", font=("Montserrat", 20))
     lblLevel6.pack(fill=X)
-    lblLevel7 = Label(frmLevel, text="Level 7", font=("Arial", 15, "bold"))
+    lblLevel7 = Label(frmLevel, text="Level 7", font=("Montserrat", 20))
     lblLevel7.pack(fill=X)
-    lblLevel8 = Label(frmLevel, text="Level 8", font=("Arial", 15, "bold"))
+    lblLevel8 = Label(frmLevel, text="Level 8", font=("Montserrat", 20))
     lblLevel8.pack(fill=X)
-    lblLevel9 = Label(frmLevel, text="Level 9", font=("Arial", 15, "bold"))
+    lblLevel9 = Label(frmLevel, text="Level 9", font=("Montserrat", 20))
     lblLevel9.pack(fill=X)
-    lblLevel10 = Label(frmLevel, text="Level 10", font=("Arial", 15, "bold"))
+    lblLevel10 = Label(frmLevel, text="Level 10", font=("Montserrat", 20))
     lblLevel10.pack(fill=X)
 
-    lblMeas1 = Label(frmMeasurement, text="20/70", font=("Arial", 15, "bold"))
+    lblMeas = Label(frmMeasurement, text="— MEASUREMENT —", font=("Montserrat ExtraBold", 20))
+    lblMeas.pack(fill=X)
+    lblMeas1 = Label(frmMeasurement, text="20 / 70", font=("Montserrat", 20))
     lblMeas1.pack(fill=X)
-    lblMeas2 = Label(frmMeasurement, text="20/60", font=("Arial", 15, "bold"))
+    lblMeas2 = Label(frmMeasurement, text="20 / 60", font=("Montserrat", 20))
     lblMeas2.pack(fill=X)
-    lblMeas3 = Label(frmMeasurement, text="20/50", font=("Arial", 15, "bold"))
+    lblMeas3 = Label(frmMeasurement, text="20 / 50", font=("Montserrat", 20))
     lblMeas3.pack(fill=X)
-    lblMeas4 = Label(frmMeasurement, text="20/40", font=("Arial", 15, "bold"))
+    lblMeas4 = Label(frmMeasurement, text="20 / 40", font=("Montserrat", 20))
     lblMeas4.pack(fill=X)
-    lblMeas5 = Label(frmMeasurement, text="20/30", font=("Arial", 15, "bold"))
+    lblMeas5 = Label(frmMeasurement, text="20 / 30", font=("Montserrat", 20))
     lblMeas5.pack(fill=X)
-    lblMeas6 = Label(frmMeasurement, text="20/20", font=("Arial", 15, "bold"))
+    lblMeas6 = Label(frmMeasurement, text="20 / 20", font=("Montserrat", 20))
     lblMeas6.pack(fill=X)
-    lblMeas7 = Label(frmMeasurement, text="20/15", font=("Arial", 15, "bold"))
+    lblMeas7 = Label(frmMeasurement, text="20 / 15", font=("Montserrat", 20))
     lblMeas7.pack(fill=X)
-    lblMeas8 = Label(frmMeasurement, text="20/10", font=("Arial", 15, "bold"))
+    lblMeas8 = Label(frmMeasurement, text="20 / 10", font=("Montserrat", 20))
     lblMeas8.pack(fill=X)
-    lblMeas9 = Label(frmMeasurement, text="20/7", font=("Arial", 15, "bold"))
+    lblMeas9 = Label(frmMeasurement, text="20 / 7", font=("Montserrat", 20))
     lblMeas9.pack(fill=X)
-    lblMeas10 = Label(frmMeasurement, text="20/4", font=("Arial", 15, "bold"))
+    lblMeas10 = Label(frmMeasurement, text="20 / 4", font=("Montserrat", 20))
     lblMeas10.pack(fill=X)
 
-    lblResult1 = Label(frmScore, text=score1, font=("Arial", 15, "bold"))
+    lblScore = Label(frmScore, text="— SCORE —", font=("Montserrat ExtraBold", 20))
+    lblScore.pack(fill=X)
+    lblResult1 = Label(frmScore, text=score1, font=("Montserrat", 20))
     lblResult1.pack(fill=X)
-    lblResult2 = Label(frmScore, text=score2, font=("Arial", 15, "bold"))
+    lblResult2 = Label(frmScore, text=score2, font=("Montserrat", 20))
     lblResult2.pack(fill=X)
-    lblResult3 = Label(frmScore, text=score3, font=("Arial", 15, "bold"))
+    lblResult3 = Label(frmScore, text=score3, font=("Montserrat", 20))
     lblResult3.pack(fill=X)
-    lblResult4 = Label(frmScore, text=score4, font=("Arial", 15, "bold"))
+    lblResult4 = Label(frmScore, text=score4, font=("Montserrat", 20))
     lblResult4.pack(fill=X)
-    lblResult5 = Label(frmScore, text=score5, font=("Arial", 15, "bold"))
+    lblResult5 = Label(frmScore, text=score5, font=("Montserrat", 20))
     lblResult5.pack(fill=X)
-    lblResult6 = Label(frmScore, text=score6, font=("Arial", 15, "bold"))
+    lblResult6 = Label(frmScore, text=score6, font=("Montserrat", 20))
     lblResult6.pack(fill=X)
-    lblResult7 = Label(frmScore, text=score7, font=("Arial", 15, "bold"))
+    lblResult7 = Label(frmScore, text=score7, font=("Montserrat", 20))
     lblResult7.pack(fill=X)
-    lblResult8 = Label(frmScore, text=score8, font=("Arial", 15, "bold"))
+    lblResult8 = Label(frmScore, text=score8, font=("Montserrat", 20))
     lblResult8.pack(fill=X)
-    lblResult9 = Label(frmScore, text=score9, font=("Arial", 15, "bold"))
+    lblResult9 = Label(frmScore, text=score9, font=("Montserrat", 20))
     lblResult9.pack(fill=X)
-    lblResult10 = Label(frmScore, text=score10, font=("Arial", 15, "bold"))
+    lblResult10 = Label(frmScore, text=score10, font=("Montserrat", 20))
     lblResult10.pack(fill=X)
 
     btnFinish = ttk.Button(
@@ -3333,7 +3343,7 @@ def main():
     lblGuide.pack(ipady=5, fill=X)
     btnStart = ttk.Button(main, text="Start", command=lambda: levelselect())
     btnStart.pack(ipadx=50, ipady=10)
-    btnExit = ttk.Button(main, text="Exit", command=lambda: main.quit())
+    btnExit = ttk.Button(main, text="Exit", command=lambda: main.destroy())
     btnExit.pack(ipadx=50, ipady=10)
 
     # Run the main() function
