@@ -764,9 +764,9 @@ def level_one():  # Define self as global variable
         hands = mp_hands.Hands(
             static_image_mode=True,
             max_num_hands=1,
-            min_detection_confidence=0.7,
+            min_detection_confidence=0.8,
             model_complexity=1,
-            min_tracking_confidence=0.7,
+            min_tracking_confidence=0.8,
         )  # Initialize Hands
 
         output = hands.process(img_rgb)  # Results
@@ -1004,7 +1004,7 @@ def level_two():  # Define self as global variable
             max_num_hands=1,
             min_detection_confidence=0.8,
             model_complexity=1,
-            min_tracking_confidence=0.70,
+            min_tracking_confidence=0.8,
         )  # Initialize Hands
 
         output = hands.process(img_rgb)  # Results
@@ -2006,9 +2006,9 @@ def level_six():  # Define self as global variable
         hands = mp_hands.Hands(
             static_image_mode=True,
             max_num_hands=1,
-            min_detection_confidence=0.8,
+            min_detection_confidence=0.7,
             model_complexity=1,
-            min_tracking_confidence=0.8,
+            min_tracking_confidence=0.7,
         )  # Initialize Hands
 
         output = hands.process(img_rgb)  # Results
@@ -2256,9 +2256,9 @@ def level_seven():  # Define self as global variable
         hands = mp_hands.Hands(
             static_image_mode=True,
             max_num_hands=1,
-            min_detection_confidence=0.8,
+            min_detection_confidence=0.7,
             model_complexity=1,
-            min_tracking_confidence=0.8,
+            min_tracking_confidence=0.7,
         )  # Initialize Hands
 
         output = hands.process(img_rgb)  # Results
@@ -2511,9 +2511,9 @@ def level_eight():  # Define self as global variable
         hands = mp_hands.Hands(
             static_image_mode=True,
             max_num_hands=1,
-            min_detection_confidence=0.8,
+            min_detection_confidence=0.7,
             model_complexity=1,
-            min_tracking_confidence=0.8,
+            min_tracking_confidence=0.7,
         )  # Initialize Hands
 
         output = hands.process(img_rgb)  # Results
@@ -2758,9 +2758,9 @@ def level_nine():  # Define self as global variable
         hands = mp_hands.Hands(
             static_image_mode=True,
             max_num_hands=1,
-            min_detection_confidence=0.8,
+            min_detection_confidence=0.7,
             model_complexity=1,
-            min_tracking_confidence=0.8,
+            min_tracking_confidence=0.7,
         )  # Initialize Hands
 
         output = hands.process(img_rgb)  # Results
@@ -3009,9 +3009,9 @@ def level_ten():  # Define self as global variable
         hands = mp_hands.Hands(
             static_image_mode=True,
             max_num_hands=1,
-            min_detection_confidence=0.8,
+            min_detection_confidence=0.7,
             model_complexity=1,
-            min_tracking_confidence=0.8,
+            min_tracking_confidence=0.7,
         )  # Initialize Hands
 
         output = hands.process(img_rgb)  # Results
@@ -3192,8 +3192,8 @@ def results():  # Define self as global variable
     global score10
 
     # Cleanup webcam feed
-    cap.release()
-    cv2.destroyAllWindows()
+    # cap.release()
+    # cv2.destroyAllWindows()
 
     # Create a frame for the current level
     resultsScreen = Toplevel(main)
