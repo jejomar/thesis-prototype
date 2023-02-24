@@ -337,16 +337,16 @@ def levelselect():
     frmBot = Frame(levselScreen, width=width, height=(height - 45))
     frmBot.pack(fill=X, pady=(5, 15))
 
-    one = PhotoImage(file=r"Buttons\20_70.png")
-    two = PhotoImage(file=r"Buttons\20_60.png")
-    thr = PhotoImage(file=r"Buttons\20_50.png")
-    fou = PhotoImage(file=r"Buttons\20_40.png")
-    fiv = PhotoImage(file=r"Buttons\20_30.png")
-    six = PhotoImage(file=r"Buttons\20_20.png")
-    sev = PhotoImage(file=r"Buttons\20_15.png")
-    eig = PhotoImage(file=r"Buttons\20_10.png")
-    nin = PhotoImage(file=r"Buttons\20_7.png")
-    ten = PhotoImage(file=r"Buttons\20_4.png")
+    one = PhotoImage(file=r"Buttons\20_200.png")
+    two = PhotoImage(file=r"Buttons\20_120.png")
+    thr = PhotoImage(file=r"Buttons\20_80.png")
+    fou = PhotoImage(file=r"Buttons\20_60.png")
+    fiv = PhotoImage(file=r"Buttons\20_40.png")
+    six = PhotoImage(file=r"Buttons\20_30.png")
+    sev = PhotoImage(file=r"Buttons\20_20.png")
+    eig = PhotoImage(file=r"Buttons\20_15.png")
+    nin = PhotoImage(file=r"Buttons\20_13.png")
+    ten = PhotoImage(file=r"Buttons\20_10.png")
 
     btnLevel1 = ttk.Button(
         frmTop, text="Level 1", image=one, command=lambda: eyetest("one")
@@ -727,7 +727,7 @@ def level_one():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_one)):
             letters = Label(
-                letter_frame, text=random_one[i], font=("Courier", 152, "bold")
+                letter_frame, text=random_one[i], font=("Courier", 251, "bold")
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -974,7 +974,7 @@ def level_two():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_two)):
             letters = Label(
-                letter_frame, text=random_two[i], font=("Courier", 130, "bold")
+                letter_frame, text=random_two[i], font=("Courier", 151, "bold")
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -1231,7 +1231,7 @@ def level_three():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_thr)):
             letters = Label(
-                letter_frame, text=random_thr[i], font=("Courier", 108, "bold")
+                letter_frame, text=random_thr[i], font=("Courier", 101, "bold")
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -1482,7 +1482,7 @@ def level_four():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_fou)):
             letters = Label(
-                letter_frame, text=random_fou[i], font=("Courier", 87, "bold")
+                letter_frame, text=random_fou[i], font=("Courier", 75, "bold")
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -1729,7 +1729,7 @@ def level_five():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_five)):
             letters = Label(
-                letter_frame, text=random_five[i], font=("Courier", 65, "bold")
+                letter_frame, text=random_five[i], font=("Courier", 50, "bold")
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -1978,7 +1978,7 @@ def level_six():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_six)):
             letters = Label(
-                letter_frame, text=random_six[i], font=("Courier", 43, "bold")
+                letter_frame, text=random_six[i], font=("Courier", 38, "bold")
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -2228,7 +2228,7 @@ def level_seven():  # Define self as global variable
             letters = Label(
                 letter_frame,
                 text=random_seven[i],
-                font=("Courier", 33, "bold"),
+                font=("Courier", 25, "bold"),
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -2481,7 +2481,7 @@ def level_eight():  # Define self as global variable
             letters = Label(
                 letter_frame,
                 text=random_eight[i],
-                font=("Courier", 21, "bold"),
+                font=("Courier", 19, "bold"),
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -2728,7 +2728,7 @@ def level_nine():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_nine)):
             letters = Label(
-                letter_frame, text=random_nine[i], font=("Courier", 15, "bold")
+                letter_frame, text=random_nine[i], font=("Courier", 16, "bold")
             )
 
             letters.pack(side=LEFT, expand=True)
@@ -2979,7 +2979,7 @@ def level_ten():  # Define self as global variable
         # Iterate through the list of random_letters
         for i in range(len(random_ten)):
             letters = Label(
-                letter_frame, text=random_ten[i], font=("Courier", 9, "bold")
+                letter_frame, text=random_ten[i], font=("Courier", 13, "bold")
             )
 
             letters.pack(side=LEFT, expand=True)
