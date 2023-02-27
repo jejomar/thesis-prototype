@@ -707,7 +707,7 @@ def level_one():  # Define self as global variable
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
-        text="Level 1 — 20 / 70",
+        text="Level 1 — 20 / 200",
         font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
@@ -953,7 +953,7 @@ def level_two():  # Define self as global variable
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
-        text="Level 2 — 20 / 60",
+        text="Level 2 — 20 / 120",
         font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
@@ -1210,7 +1210,7 @@ def level_three():  # Define self as global variable
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
-        text="Level 3 — 20 / 50",
+        text="Level 3 — 20 / 80",
         font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
@@ -1461,7 +1461,7 @@ def level_four():  # Define self as global variable
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
-        text="Level 4 — 20 / 40",
+        text="Level 4 — 20 / 60",
         font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
@@ -1708,7 +1708,7 @@ def level_five():  # Define self as global variable
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
-        text="Level 5 — 20 / 30",
+        text="Level 5 — 20 / 40",
         font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
@@ -1957,7 +1957,7 @@ def level_six():  # Define self as global variable
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
-        text="Level 6 — 20 / 20",
+        text="Level 6 — 20 / 30",
         font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
@@ -2205,7 +2205,7 @@ def level_seven():  # Define self as global variable
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
-        text="Level 7 — 20 / 15",
+        text="Level 7 — 20 / 20",
         font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
@@ -2458,7 +2458,7 @@ def level_eight():  # Define self as global variable
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
-        text="Level 8 — 20 / 10",
+        text="Level 8 — 20 / 15",
         font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
@@ -2708,7 +2708,7 @@ def level_nine():  # Define self as global variable
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
-        label_frame, text="Level 9 — 20 / 7", font=("Montserrat ExtraBold", 40)
+        label_frame, text="Level 9 — 20 / 13", font=("Montserrat ExtraBold", 40)
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -2958,7 +2958,7 @@ def level_ten():  # Define self as global variable
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
         label_frame,
-        text="Level 10 — 20 / 4",
+        text="Level 10 — 20 / 10",
         font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
