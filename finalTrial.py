@@ -46,10 +46,10 @@ with open("model.pkl", "rb") as f:
     svm = pickle.load(f)
 
 # Constants
-CUE_FONT = ("Montserrat", 35)
+CUE_FONT = ("Montserrat SemiBold", 45)
 
 # Start the camera
-cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
 
@@ -821,11 +821,11 @@ def level_one():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
@@ -1073,11 +1073,11 @@ def level_two():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
@@ -1329,11 +1329,11 @@ def level_three():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
@@ -1580,11 +1580,11 @@ def level_four():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
@@ -1827,11 +1827,11 @@ def level_five():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
@@ -2076,11 +2076,11 @@ def level_six():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
@@ -2326,11 +2326,11 @@ def level_seven():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
@@ -2581,11 +2581,11 @@ def level_eight():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
@@ -2828,11 +2828,11 @@ def level_nine():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
@@ -3079,11 +3079,11 @@ def level_ten():  # Define self as global variable
             cv2.putText(
                 frame,
                 str(y_pred[0]),
-                (20, 50),
-                cv2.FONT_HERSHEY_TRIPLEX,
-                2,
-                (255, 0, 0),
-                2,
+                (20, 80),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                3,
+                (0, 0, 0),
+                15,
                 cv2.LINE_AA,
             )
 
