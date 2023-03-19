@@ -4,11 +4,10 @@ import pickle
 import random
 from tkinter import *
 from tkinter import ttk
-
 import cv2
 import mediapipe as mp
 import numpy as np
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageGrab
 
 # Globally accessible variables
 detected_letters1 = []
@@ -49,7 +48,7 @@ with open("model.pkl", "rb") as f:
 CUE_FONT = ("Montserrat SemiBold", 45)
 
 # Start the camera
-cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, camera_width)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, camera_height)
 
@@ -3190,6 +3189,8 @@ def results():  # Define self as global variable
     global score8
     global score9
     global score10
+    global entName
+    global btnFinish
 
     # Cleanup webcam feed
     # cap.release()
@@ -3213,7 +3214,7 @@ def results():  # Define self as global variable
         text="— ASSESSMENT RESULTS —",
         font=("Montserrat ExtraBold", 40),
     )
-    lblTitle.pack(fill=X, pady=(50, 0))
+    lblTitle.pack(fill=X, pady=(30, 0))
     lblInstr = Label(
         resultsScreen,
         text="Here's the results of the completed assessment.",
@@ -3314,23 +3315,55 @@ def results():  # Define self as global variable
     lblResult10 = Label(frmScore, text=score10, font=("Montserrat", 20))
     lblResult10.pack(fill=X)
 
+    lblGuide = Label(frmBottom, text="Patient's Name: ", font=("Montserrat SemiBold", 12))
+    lblGuide.pack(side = LEFT, fill=X, padx=(400,0))
+    entName = ttk.Entry(frmBottom, font=("Montserrat", 12), validate="key", validatecommand = hasContent)
+    entName.pack(side = LEFT, fill=X)
     btnFinish = ttk.Button(
-        frmBottom, text="Finish", command=lambda: startOver()
+        frmBottom, text="Finish", state="disabled", command=lambda: startOver()
     )
-    btnFinish.pack(padx=10, pady=10, ipadx=30, ipady=10)
+    btnFinish.pack(side = LEFT, padx=10, pady=10, ipadx=30, ipady=10)
 
 
+######################
+
+######################
+def hasContent():
+    isFilled = entName.get()
+    # Enable/disable the button based on the contents of the entry widget
+    if isFilled:
+        btnFinish.config(state="normal")
+        return True
+    else:
+        btnFinish.config(state="disabled")
+        return True
+######################
+
+######################
+def screenshot():
+    x = resultsScreen.winfo_rootx()
+    y = resultsScreen.winfo_rooty()
+    w = resultsScreen.winfo_width()
+    h = resultsScreen.winfo_height()
+
+    filename = entName.get()
+    today = datetime.datetime.now().strftime('%Y-%m-%d')
+    folder_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', 'Assessments')
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+    full_filename = fr"{folder_path}\{filename}_{today}.png"
+    screenshot = ImageGrab.grab(bbox=(x, y, x+w, y+h-70))
+    screenshot.save(full_filename)
 ######################
 
 ######################
 def startOver():
+    screenshot()
     cap.release()
     cv2.destroyAllWindows()
     resultsScreen.destroy()
     main.destroy()
-    os.system("python finalTrial.py")
-
-
+    os.system("python app.py")
 ######################
 
 ######################
@@ -3377,7 +3410,7 @@ def main():
         font=("Century Gothic", 10),
     )
     lblGuide.pack(ipady=5, fill=X)
-    btnStart = ttk.Button(main, text="Start", command=lambda: levelselect())
+    btnStart = ttk.Button(main, text="Start", command=lambda: results())
     btnStart.pack(ipadx=50, ipady=10)
     btnExit = ttk.Button(main, text="Exit", command=lambda: main.destroy())
     btnExit.pack(ipadx=50, ipady=10)
