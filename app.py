@@ -4,10 +4,11 @@ import pickle
 import random
 from tkinter import *
 from tkinter import ttk
+
 import cv2
 import mediapipe as mp
 import numpy as np
-from PIL import Image, ImageTk, ImageGrab
+from PIL import Image, ImageGrab, ImageTk
 
 # Globally accessible variables
 detected_letters1 = []
@@ -64,6 +65,7 @@ def gen_ran_letters():
         "G",
         "H",
         "I",
+        "J",
         "K",
         "L",
         "M",
@@ -79,6 +81,7 @@ def gen_ran_letters():
         "W",
         "X",
         "Y",
+        "Z",
     ]
 
     random_letters = random.sample(letters_list, 5)
@@ -2707,7 +2710,9 @@ def level_nine():  # Define self as global variable
     )
     lblLevel.pack(side=LEFT, padx=(20, 0), pady=10, anchor=W)
     lblIndic = Label(
-        label_frame, text="Level 9 — 20 / 13", font=("Montserrat ExtraBold", 40)
+        label_frame,
+        text="Level 9 — 20 / 13",
+        font=("Montserrat ExtraBold", 40),
     )
     lblIndic.pack(side=RIGHT, padx=(0, 20), pady=10, anchor=W)
 
@@ -3315,14 +3320,21 @@ def results():  # Define self as global variable
     lblResult10 = Label(frmScore, text=score10, font=("Montserrat", 20))
     lblResult10.pack(fill=X)
 
-    lblGuide = Label(frmBottom, text="Patient's Name: ", font=("Montserrat SemiBold", 12))
-    lblGuide.pack(side = LEFT, fill=X, padx=(400,0))
-    entName = ttk.Entry(frmBottom, font=("Montserrat", 12), validate="key", validatecommand = hasContent)
-    entName.pack(side = LEFT, fill=X)
+    lblGuide = Label(
+        frmBottom, text="Patient's Name: ", font=("Montserrat SemiBold", 12)
+    )
+    lblGuide.pack(side=LEFT, fill=X, padx=(400, 0))
+    entName = ttk.Entry(
+        frmBottom,
+        font=("Montserrat", 12),
+        validate="key",
+        validatecommand=hasContent,
+    )
+    entName.pack(side=LEFT, fill=X)
     btnFinish = ttk.Button(
         frmBottom, text="Finish", state="disabled", command=lambda: startOver()
     )
-    btnFinish.pack(side = LEFT, padx=10, pady=10, ipadx=30, ipady=10)
+    btnFinish.pack(side=LEFT, padx=10, pady=10, ipadx=30, ipady=10)
 
 
 ######################
@@ -3337,6 +3349,8 @@ def hasContent():
     else:
         btnFinish.config(state="disabled")
         return True
+
+
 ######################
 
 ######################
@@ -3347,13 +3361,17 @@ def screenshot():
     h = resultsScreen.winfo_height()
 
     filename = entName.get()
-    today = datetime.datetime.now().strftime('%Y-%m-%d')
-    folder_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', 'Assessments')
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    folder_path = os.path.join(
+        os.path.join(os.environ["USERPROFILE"]), "Desktop", "Assessments"
+    )
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
-    full_filename = fr"{folder_path}\{filename}_{today}.png"
-    screenshot = ImageGrab.grab(bbox=(x, y, x+w, y+h-70))
+    full_filename = rf"{folder_path}\{filename}_{today}.png"
+    screenshot = ImageGrab.grab(bbox=(x, y, x + w, y + h - 70))
     screenshot.save(full_filename)
+
+
 ######################
 
 ######################
@@ -3364,6 +3382,8 @@ def startOver():
     resultsScreen.destroy()
     main.destroy()
     os.system("python app.py")
+
+
 ######################
 
 ######################
@@ -3410,7 +3430,7 @@ def main():
         font=("Century Gothic", 10),
     )
     lblGuide.pack(ipady=5, fill=X)
-    btnStart = ttk.Button(main, text="Start", command=lambda: results())
+    btnStart = ttk.Button(main, text="Start", command=lambda: levelselect())
     btnStart.pack(ipadx=50, ipady=10)
     btnExit = ttk.Button(main, text="Exit", command=lambda: main.destroy())
     btnExit.pack(ipadx=50, ipady=10)
