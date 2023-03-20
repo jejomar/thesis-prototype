@@ -4,4 +4,4 @@
 `pip install -r requirements.txt`
 
 ## Run the program
-`python vatest.py`
+`python app.py`
