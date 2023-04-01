@@ -723,7 +723,7 @@ def level_one():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_one = gen_ran_letters()
+        random_one = ["A", "B", "C", "D", "E"]
         print(random_one)
 
         # Iterate through the list of random_letters
@@ -861,11 +861,13 @@ def level_one():  # Define self as global variable
 
                 if (int((curr - start_time).total_seconds())) is countdown:
                     detected_letters1.append(y_pred[0])
+
                     start_time = curr
                     curr = datetime.datetime.now()
                     finish = start_time + datetime.timedelta(seconds=5)
                     print(detected_letters1)
                     cv2.waitKey(3000)
+
                 else:
                     cue_label.config(
                         text=str(detected_letters1)
@@ -876,15 +878,34 @@ def level_one():  # Define self as global variable
                         )
                         + " second/s."
                     )
+
             else:
+
                 cue_label.config(
                     text=str(detected_letters1) + " | No hands detected."
                 )
                 start_time = curr
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
+
+        # If all detected letters are now stored in the array, program will wait for 3 seconds.
+        # before proceeding to the next level
         else:
-            verify()
+            if len(detected_letters1) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters1)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
@@ -970,7 +991,7 @@ def level_two():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_two = gen_ran_letters()
+        random_two = ["F", "G", "H", "I", "J"]
         print(random_two)
 
         # Iterate through the list of random_letters
@@ -1161,7 +1182,21 @@ def level_two():  # Define self as global variable
                 finish = start_time + datetime.timedelta(seconds=5)
 
         else:
-            verify()
+            if len(detected_letters2) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters2)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
@@ -1227,7 +1262,7 @@ def level_three():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_thr = gen_ran_letters()
+        random_thr = ["K", "L", "M", "N", "O"]
         print(random_thr)
 
         # Iterate through the list of random_letters
@@ -1392,7 +1427,21 @@ def level_three():  # Define self as global variable
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
         else:
-            verify()
+            if len(detected_letters3) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters3)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
@@ -1478,7 +1527,7 @@ def level_four():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_fou = gen_ran_letters()
+        random_fou = ["P", "Q", "R", "S", "T"]
         print(random_fou)
 
         # Iterate through the list of random_letters
@@ -1639,7 +1688,21 @@ def level_four():  # Define self as global variable
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
         else:
-            verify()
+            if len(detected_letters4) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters4)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
@@ -1725,7 +1788,7 @@ def level_five():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_five = gen_ran_letters()
+        random_five = ["U", "V", "W", "X", "Y"]
         print(random_five)
 
         # Iterate through the list of random_letters
@@ -1890,7 +1953,21 @@ def level_five():  # Define self as global variable
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
         else:
-            verify()
+            if len(detected_letters5) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters5)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
@@ -1974,7 +2051,7 @@ def level_six():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_six = gen_ran_letters()
+        random_six = ["Z", "A", "B", "C", "D"]
         print(random_six)
 
         # Iterate through the list of random_letters
@@ -2135,7 +2212,21 @@ def level_six():  # Define self as global variable
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
         else:
-            verify()
+            if len(detected_letters6) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters6)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
@@ -2389,7 +2480,21 @@ def level_seven():  # Define self as global variable
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
         else:
-            verify()
+            if len(detected_letters7) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters7)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
@@ -2640,7 +2745,21 @@ def level_eight():  # Define self as global variable
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
         else:
-            verify()
+            if len(detected_letters8) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters8)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
@@ -2893,7 +3012,21 @@ def level_nine():  # Define self as global variable
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
         else:
-            verify()
+            if len(detected_letters9) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters9)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGRA2RGB)
         img = Image.fromarray(frameRGB)
@@ -3144,7 +3277,21 @@ def level_ten():  # Define self as global variable
                 curr = datetime.datetime.now()
                 finish = start_time + datetime.timedelta(seconds=5)
         else:
-            verify()
+            if len(detected_letters10) == 5:
+
+                print(f"Start: {start_time.isoformat()}")
+                print(f"Finish: {finish.isoformat()}")
+                print(f"Current: {curr.isoformat()}")
+
+                cue_label.config(
+                    text=str(detected_letters10)
+                    + " | Please wait for "
+                    + str(5 - int((curr - start_time).total_seconds()))
+                    + " second/s."
+                )
+
+                if (int((curr - start_time).total_seconds())) is 5:
+                    verify()
 
         frameRGB = cv2.cvtColor(cap.read()[1], cv2.COLOR_BGR2RGB)
         img = Image.fromarray(frameRGB)
