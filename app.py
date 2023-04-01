@@ -3508,13 +3508,13 @@ def screenshot():
     h = resultsScreen.winfo_height()
 
     filename = entName.get()
-    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    today = datetime.datetime.now().strftime("%m%d%y_%I%M%p")
     folder_path = os.path.join(
         os.path.join(os.environ["USERPROFILE"]), "Desktop", "Assessments"
     )
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
-    full_filename = rf"{folder_path}\{filename}_{today}.png"
+    full_filename = rf"{folder_path}\{today} {filename}.png"
     screenshot = ImageGrab.grab(bbox=(x, y, x + w, y + h - 70))
     screenshot.save(full_filename)
 
