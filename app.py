@@ -86,8 +86,6 @@ def gen_ran_letters():
 
     random_letters = random.sample(letters_list, 5)
     return random_letters
-
-
 ######################
 
 ######################
@@ -114,8 +112,6 @@ def returnREye():
 def returnBEye():
     beinstrScreen.withdraw()
     main.deiconify()
-
-
 ######################
 
 ######################
@@ -133,8 +129,6 @@ def eyeChosen(eye):
     else:
         eyeScreen.withdraw()
         botheyeinstr()
-
-
 ######################
 
 ######################
@@ -293,8 +287,6 @@ def lvlChosen():
             eyeScreen.destroy()
             levselScreen.destroy()
             level_ten()
-
-
 ######################
 
 ######################
@@ -392,8 +384,6 @@ def levelselect():
     btnLevel10.pack(side=LEFT, padx=29, pady=25, ipadx=34, ipady=30)
 
     levselScreen.mainloop()
-
-
 ######################
 
 ######################
@@ -476,8 +466,6 @@ def eyetest(level):
     btnRight.pack(pady=(20, 10), padx=20, fill=BOTH, ipady=100)
 
     eyeScreen.mainloop()
-
-
 ######################
 
 ######################
@@ -542,8 +530,6 @@ def lefteyeinstr():
     btnBegin.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=E)
 
     leinstrScreen.mainloop()
-
-
 ######################
 
 ######################
@@ -608,8 +594,6 @@ def righteyeinstr():
     btnBegin.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=E)
 
     reinstrScreen.mainloop()
-
-
 ######################
 
 ######################
@@ -673,8 +657,6 @@ def botheyeinstr():
     btnBegin.pack(padx=10, pady=10, ipadx=30, ipady=10, anchor=E)
 
     beinstrScreen.mainloop()
-
-
 ######################
 
 ######################
@@ -723,7 +705,7 @@ def level_one():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_one = ["A", "B", "C", "D", "E"]
+        random_one = gen_ran_letters()
         print(random_one)
 
         # Iterate through the list of random_letters
@@ -939,8 +921,6 @@ def level_one():  # Define self as global variable
             cv2.destroyAllWindows()
             results()
             run_level_one.destroy()
-
-
 ######################
 
 ######################
@@ -991,7 +971,7 @@ def level_two():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_two = ["F", "G", "H", "I", "J"]
+        random_two = gen_ran_letters()
         print(random_two)
 
         # Iterate through the list of random_letters
@@ -1209,8 +1189,6 @@ def level_two():  # Define self as global variable
         cv2.moveWindow("Feed", 1595, 810)
 
     camera_display()
-
-
 ######################
 
 ######################
@@ -1262,7 +1240,7 @@ def level_three():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_thr = ["K", "L", "M", "N", "O"]
+        random_thr = gen_ran_letters()
         print(random_thr)
 
         # Iterate through the list of random_letters
@@ -1474,8 +1452,6 @@ def level_three():  # Define self as global variable
             cv2.destroyAllWindows()
             results()
             run_level_three.destroy()
-
-
 ######################
 
 ######################
@@ -1527,7 +1503,7 @@ def level_four():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_fou = ["P", "Q", "R", "S", "T"]
+        random_fou = gen_ran_letters()
         print(random_fou)
 
         # Iterate through the list of random_letters
@@ -1735,8 +1711,6 @@ def level_four():  # Define self as global variable
             cv2.destroyAllWindows()
             results()
             run_level_four.destroy()
-
-
 ######################
 
 ######################
@@ -1788,7 +1762,7 @@ def level_five():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_five = ["U", "V", "W", "X", "Y"]
+        random_five = gen_ran_letters()
         print(random_five)
 
         # Iterate through the list of random_letters
@@ -2000,8 +1974,6 @@ def level_five():  # Define self as global variable
             cv2.destroyAllWindows()
             results()
             run_level_five.destroy()
-
-
 ######################
 
 ######################
@@ -2051,7 +2023,7 @@ def level_six():  # Define self as global variable
         letter_frame.pack(fill=X, expand=True)
 
         # Run the generate function and set it to the global list 'random_letters'
-        random_six = ["Z", "A", "B", "C", "D"]
+        random_six = gen_ran_letters()
         print(random_six)
 
         # Iterate through the list of random_letters
@@ -2260,8 +2232,6 @@ def level_six():  # Define self as global variable
             cv2.destroyAllWindows()
             results()
             run_level_six.destroy()
-
-
 ######################
 
 ######################
@@ -2527,8 +2497,6 @@ def level_seven():  # Define self as global variable
             cv2.destroyAllWindows()
             results()
             run_level_seven.destroy()
-
-
 ######################
 
 ######################
@@ -2792,8 +2760,6 @@ def level_eight():  # Define self as global variable
             cv2.destroyAllWindows()
             results()
             run_level_eight.destroy()
-
-
 ######################
 
 ######################
@@ -3059,8 +3025,6 @@ def level_nine():  # Define self as global variable
             cv2.destroyAllWindows()
             results()
             run_level_nine.destroy()
-
-
 ######################
 
 ######################
@@ -3324,8 +3288,6 @@ def level_ten():  # Define self as global variable
             cv2.destroyAllWindows()
             results()
             run_level_ten.destroy()
-
-
 ######################
 
 ######################
@@ -3482,8 +3444,6 @@ def results():  # Define self as global variable
         frmBottom, text="Finish", state="disabled", command=lambda: startOver()
     )
     btnFinish.pack(side=LEFT, padx=10, pady=10, ipadx=30, ipady=10)
-
-
 ######################
 
 ######################
@@ -3508,7 +3468,7 @@ def screenshot():
     h = resultsScreen.winfo_height()
 
     filename = entName.get()
-    today = datetime.datetime.now().strftime("%m%d%y_%I%M%p")
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
     folder_path = os.path.join(
         os.path.join(os.environ["USERPROFILE"]), "Desktop", "Assessments"
     )
@@ -3517,8 +3477,6 @@ def screenshot():
     full_filename = rf"{folder_path}\{today} {filename}.png"
     screenshot = ImageGrab.grab(bbox=(x, y, x + w, y + h - 70))
     screenshot.save(full_filename)
-
-
 ######################
 
 ######################
@@ -3529,8 +3487,6 @@ def startOver():
     resultsScreen.destroy()
     main.destroy()
     os.system("python app.py")
-
-
 ######################
 
 ######################
@@ -3584,8 +3540,6 @@ def main():
 
     # Run the main() function
     main.mainloop()
-
-
 ######################
 
 main()
